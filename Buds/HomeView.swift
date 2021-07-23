@@ -5,11 +5,19 @@
 //  Created by Olivia Ih on 7/22/21.
 //
 
+/*
+ A view showing the title/home page
+ */
+
 import SwiftUI
 
 struct HomeView: View {
     
+    private let buttonWidth:CGFloat = (UIScreen.main.bounds.width - 30) / 2
+    private let buttonHeight:CGFloat = 60
+    
     @State private var selection:String? = nil
+    
     
     var body: some View {
         NavigationView {
@@ -17,6 +25,7 @@ struct HomeView: View {
                 
                 Spacer()
                 
+                // Title and app icon
                 HStack() {
                     Image("App Icon")
                     
@@ -30,6 +39,7 @@ struct HomeView: View {
                 Spacer()
                 Spacer()
                 
+                // Log in and register buttons
                 HStack {
                     NavigationLink(destination: LoginView(), tag: "login", selection: $selection) {
                         EmptyView()
@@ -41,25 +51,16 @@ struct HomeView: View {
                     Button("LOG IN") {
                         self.selection = "login"
                     }
-                    .foregroundColor(Color.white)
-                    .padding([.leading, .trailing], 58)
-                    .padding([.top, .bottom], 17)
-                    .background(Color("Teal"))
-                    .cornerRadius(6.0)
-                    .font(.custom("Avenir Black", size: 14))
+                    .buttonStyle(WhiteTextTealBackgroundButton(width: buttonWidth, height: buttonHeight))
                     
                     
                     Button("REGISTER") {
                         self.selection = "register"
                     }
-                    .foregroundColor(Color("Teal"))
-                    .padding([.leading, .trailing], 58)
-                    .padding([.top, .bottom], 17)
-                    .border(/*@START_MENU_TOKEN@*/Color("Teal")/*@END_MENU_TOKEN@*/, width: 4)
-                    .cornerRadius(6.0)
-                    .font(.custom("Avenir Black", size: 14))
+                    .buttonStyle(TealTextWhiteBackgroundButton(width: buttonWidth, height: buttonHeight))
                 }
                 .padding(.bottom, 30)
+                .padding(.horizontal, 10)
             }
         }
     }

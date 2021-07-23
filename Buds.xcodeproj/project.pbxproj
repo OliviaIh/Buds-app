@@ -16,6 +16,9 @@
 		7FCD0B2E26AA3A1E0095A259 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCD0B2D26AA3A1E0095A259 /* HomeView.swift */; };
 		7FCD0B3026AA4C640095A259 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCD0B2F26AA4C640095A259 /* RegisterView.swift */; };
 		7FCD0B3226AA4C7C0095A259 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCD0B3126AA4C7C0095A259 /* LoginView.swift */; };
+		7FCD0B3426AAAAD20095A259 /* CustomTextFieldStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCD0B3326AAAAD20095A259 /* CustomTextFieldStyles.swift */; };
+		7FCD0B3626AAB2640095A259 /* ForGrabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCD0B3526AAB2640095A259 /* ForGrabsView.swift */; };
+		7FCD0B3826AAB30B0095A259 /* CustomButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCD0B3726AAB30B0095A259 /* CustomButtonStyles.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		7FCD0B2D26AA3A1E0095A259 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7FCD0B2F26AA4C640095A259 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		7FCD0B3126AA4C7C0095A259 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		7FCD0B3326AAAAD20095A259 /* CustomTextFieldStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldStyles.swift; sourceTree = "<group>"; };
+		7FCD0B3526AAB2640095A259 /* ForGrabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForGrabsView.swift; sourceTree = "<group>"; };
+		7FCD0B3726AAB30B0095A259 /* CustomButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyles.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,9 @@
 				7FCD0B2D26AA3A1E0095A259 /* HomeView.swift */,
 				7FCD0B2F26AA4C640095A259 /* RegisterView.swift */,
 				7FCD0B3126AA4C7C0095A259 /* LoginView.swift */,
+				7FCD0B3526AAB2640095A259 /* ForGrabsView.swift */,
+				7FCD0B3326AAAAD20095A259 /* CustomTextFieldStyles.swift */,
+				7FCD0B3726AAB30B0095A259 /* CustomButtonStyles.swift */,
 				7F5CF83B26A66DEA00E23E22 /* Assets.xcassets */,
 				7F5CF84026A66DEA00E23E22 /* Info.plist */,
 				7F5CF83D26A66DEA00E23E22 /* Preview Content */,
@@ -268,10 +277,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FCD0B3626AAB2640095A259 /* ForGrabsView.swift in Sources */,
 				7FCD0B2E26AA3A1E0095A259 /* HomeView.swift in Sources */,
 				7FCD0B3026AA4C640095A259 /* RegisterView.swift in Sources */,
+				7FCD0B3426AAAAD20095A259 /* CustomTextFieldStyles.swift in Sources */,
 				7F5CF83A26A66DE800E23E22 /* ContentView.swift in Sources */,
 				7FCD0B3226AA4C7C0095A259 /* LoginView.swift in Sources */,
+				7FCD0B3826AAB30B0095A259 /* CustomButtonStyles.swift in Sources */,
 				7F5CF83826A66DE800E23E22 /* BudsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
