@@ -13,6 +13,9 @@
 		7F5CF83F26A66DEA00E23E22 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F5CF83E26A66DEA00E23E22 /* Preview Assets.xcassets */; };
 		7F5CF84A26A66DEA00E23E22 /* BudsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5CF84926A66DEA00E23E22 /* BudsTests.swift */; };
 		7F5CF85526A66DEA00E23E22 /* BudsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5CF85426A66DEA00E23E22 /* BudsUITests.swift */; };
+		7FCD0B2E26AA3A1E0095A259 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCD0B2D26AA3A1E0095A259 /* HomeView.swift */; };
+		7FCD0B3026AA4C640095A259 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCD0B2F26AA4C640095A259 /* RegisterView.swift */; };
+		7FCD0B3226AA4C7C0095A259 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCD0B3126AA4C7C0095A259 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		7F5CF85026A66DEA00E23E22 /* BudsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F5CF85426A66DEA00E23E22 /* BudsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsUITests.swift; sourceTree = "<group>"; };
 		7F5CF85626A66DEA00E23E22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7FCD0B2D26AA3A1E0095A259 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		7FCD0B2F26AA4C640095A259 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		7FCD0B3126AA4C7C0095A259 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,9 @@
 			children = (
 				7F5CF83726A66DE800E23E22 /* BudsApp.swift */,
 				7F5CF83926A66DE800E23E22 /* ContentView.swift */,
+				7FCD0B2D26AA3A1E0095A259 /* HomeView.swift */,
+				7FCD0B2F26AA4C640095A259 /* RegisterView.swift */,
+				7FCD0B3126AA4C7C0095A259 /* LoginView.swift */,
 				7F5CF83B26A66DEA00E23E22 /* Assets.xcassets */,
 				7F5CF84026A66DEA00E23E22 /* Info.plist */,
 				7F5CF83D26A66DEA00E23E22 /* Preview Content */,
@@ -259,7 +268,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FCD0B2E26AA3A1E0095A259 /* HomeView.swift in Sources */,
+				7FCD0B3026AA4C640095A259 /* RegisterView.swift in Sources */,
 				7F5CF83A26A66DE800E23E22 /* ContentView.swift in Sources */,
+				7FCD0B3226AA4C7C0095A259 /* LoginView.swift in Sources */,
 				7F5CF83826A66DE800E23E22 /* BudsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
