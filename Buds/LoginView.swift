@@ -13,8 +13,9 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @State private var username:String = ""
+    @State private var email:String = ""
     @State private var password:String = ""
+    
     @State private var loginPressed:Bool = false
     
     var body: some View {
@@ -22,17 +23,16 @@ struct LoginView: View {
             
             // Log in title
             HStack {
-                Text("\nlog in")
+                Text("log in")
                     .font(.custom("Avenir Medium", size: 48))
                     .foregroundColor(Color("Dark Teal"))
-                    .padding(.leading)
+                    .padding([.leading, .top])
+                    .padding(.bottom, 40)
                 Spacer()
             }
-            
-            Spacer()
-            
+                        
             // Email text field
-            TextField("Email", text: $username)
+            TextField("Email", text: $email)
                 .padding()
                 .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
                 .disableAutocorrection(true)
@@ -54,8 +54,6 @@ struct LoginView: View {
                     .padding()
                 }
             
-            Spacer()
-            Spacer()
             Spacer()
         }
     }
