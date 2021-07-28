@@ -1,5 +1,5 @@
 Buds/GoogleService-Info.plist
 .DS_Store
 Pods/
-xcuserdata/
+Buds.xcodeproj/xcuserdata/
 Buds.xcworkspace/
