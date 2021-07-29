@@ -8,8 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject var authViewModel:UserAuthViewModel
+    
     var body: some View {
-        HomeView()
+        NavigationView {
+            if authViewModel.signedIn {
+                ForGrabsView()
+            }
+            else {
+                HomeView()
+            }
+        }
+        .onAppear {
+            authViewModel.signedIn = authViewModel.isSignedIn
+        }
     }
 }
 

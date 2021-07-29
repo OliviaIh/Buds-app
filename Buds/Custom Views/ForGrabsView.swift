@@ -12,9 +12,14 @@
 import SwiftUI
 
 struct ForGrabsView: View {
+    
+    @EnvironmentObject var authViewModel:UserAuthViewModel
+    
     var body: some View {
-        Text("for grabs")
-            .navigationBarHidden(true)
+        Button("temporary sign out") {
+            authViewModel.signOut()
+        }
+        .buttonStyle(WhiteTextTealBackgroundButton(width: 300, height: 100))
     }
 }
 

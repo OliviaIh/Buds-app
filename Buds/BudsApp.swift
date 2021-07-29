@@ -15,7 +15,11 @@ struct BudsApp: App {
     
     var body: some Scene {
         WindowGroup {
+            
+            let authViewModel = UserAuthViewModel()
+            
             ContentView()
+                .environmentObject(authViewModel)
         }
     }
 }
@@ -28,7 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions:
         [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    
     FirebaseApp.configure()
+    
     return true
   }
 }

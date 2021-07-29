@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		7F5CF83F26A66DEA00E23E22 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F5CF83E26A66DEA00E23E22 /* Preview Assets.xcassets */; };
 		7F5CF84A26A66DEA00E23E22 /* BudsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5CF84926A66DEA00E23E22 /* BudsTests.swift */; };
 		7F5CF85526A66DEA00E23E22 /* BudsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5CF85426A66DEA00E23E22 /* BudsUITests.swift */; };
+		7F9C220326B2C0D2008BE28A /* UserAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9C220226B2C0D2008BE28A /* UserAuthViewModel.swift */; };
 		7FB1153126AFD979002FDD41 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FB1153026AFD979002FDD41 /* GoogleService-Info.plist */; };
 		7FB1153226AFD979002FDD41 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FB1153026AFD979002FDD41 /* GoogleService-Info.plist */; };
 		7FB1153326AFD979002FDD41 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FB1153026AFD979002FDD41 /* GoogleService-Info.plist */; };
@@ -62,6 +63,7 @@
 		7F5CF85026A66DEA00E23E22 /* BudsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F5CF85426A66DEA00E23E22 /* BudsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsUITests.swift; sourceTree = "<group>"; };
 		7F5CF85626A66DEA00E23E22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F9C220226B2C0D2008BE28A /* UserAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthViewModel.swift; sourceTree = "<group>"; };
 		7FB1153026AFD979002FDD41 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7FCD0B2D26AA3A1E0095A259 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7FCD0B2F26AA4C640095A259 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -128,14 +130,11 @@
 		7F5CF83626A66DE800E23E22 /* Buds */ = {
 			isa = PBXGroup;
 			children = (
+				7F9C220426B2C0F6008BE28A /* Styling */,
+				7F9C220126B2BE02008BE28A /* Custom Views */,
 				7F5CF83726A66DE800E23E22 /* BudsApp.swift */,
 				7F5CF83926A66DE800E23E22 /* ContentView.swift */,
-				7FCD0B2D26AA3A1E0095A259 /* HomeView.swift */,
-				7FCD0B2F26AA4C640095A259 /* RegisterView.swift */,
-				7FCD0B3126AA4C7C0095A259 /* LoginView.swift */,
-				7FCD0B3526AAB2640095A259 /* ForGrabsView.swift */,
-				7FCD0B3326AAAAD20095A259 /* CustomTextFieldStyles.swift */,
-				7FCD0B3726AAB30B0095A259 /* CustomButtonStyles.swift */,
+				7F9C220226B2C0D2008BE28A /* UserAuthViewModel.swift */,
 				7F5CF83B26A66DEA00E23E22 /* Assets.xcassets */,
 				7F5CF84026A66DEA00E23E22 /* Info.plist */,
 				7FB1153026AFD979002FDD41 /* GoogleService-Info.plist */,
@@ -170,6 +169,26 @@
 			path = BudsUITests;
 			sourceTree = "<group>";
 		};
+		7F9C220126B2BE02008BE28A /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				7FCD0B2D26AA3A1E0095A259 /* HomeView.swift */,
+				7FCD0B2F26AA4C640095A259 /* RegisterView.swift */,
+				7FCD0B3126AA4C7C0095A259 /* LoginView.swift */,
+				7FCD0B3526AAB2640095A259 /* ForGrabsView.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		7F9C220426B2C0F6008BE28A /* Styling */ = {
+			isa = PBXGroup;
+			children = (
+				7FCD0B3326AAAAD20095A259 /* CustomTextFieldStyles.swift */,
+				7FCD0B3726AAB30B0095A259 /* CustomButtonStyles.swift */,
+			);
+			path = Styling;
+			sourceTree = "<group>";
+		};
 		930EFBE9403648637DCBD033 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,7 +209,6 @@
 				2B804A5DF477CA5E6C198D62 /* Pods-BudsTests.debug.xcconfig */,
 				8C68A7D7A5AF9F0A9B10B7F2 /* Pods-BudsTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -439,6 +457,7 @@
 				7FCD0B3026AA4C640095A259 /* RegisterView.swift in Sources */,
 				7FCD0B3426AAAAD20095A259 /* CustomTextFieldStyles.swift in Sources */,
 				7F5CF83A26A66DE800E23E22 /* ContentView.swift in Sources */,
+				7F9C220326B2C0D2008BE28A /* UserAuthViewModel.swift in Sources */,
 				7FCD0B3226AA4C7C0095A259 /* LoginView.swift in Sources */,
 				7FCD0B3826AAB30B0095A259 /* CustomButtonStyles.swift in Sources */,
 				7F5CF83826A66DE800E23E22 /* BudsApp.swift in Sources */,

@@ -13,10 +13,13 @@ import SwiftUI
 
 struct LoginView: View {
     
+    @EnvironmentObject var authViewModel:UserAuthViewModel
+    
     @State private var email:String = ""
     @State private var password:String = ""
     
-    @State private var loginPressed:Bool = false
+    @State private var loginSuccessful:Bool = false
+    @State private var errorSigningIn = false
     
     var body: some View {
         VStack {
@@ -29,6 +32,18 @@ struct LoginView: View {
                     .padding([.leading, .top])
                     .padding(.bottom, 40)
                 Spacer()
+            }
+            
+            if errorSigningIn {
+                HStack {
+                    Text("ERROR: " + authViewModel.errorMessage)
+                        .font(.custom("Avenir Heavy", size: 20))
+                        .foregroundColor(Color("Red Orange"))
+                        .multilineTextAlignment(.leading)
+                        .padding(.leading)
+                    Spacer()
+                    
+                }
             }
                         
             // Email text field
@@ -46,9 +61,21 @@ struct LoginView: View {
                 .textFieldStyle(TealRectangleTextFieldStyle())
                 
             // Log in button
-            NavigationLink(destination: ForGrabsView(), isActive: $loginPressed) {
+            NavigationLink(destination: ForGrabsView(), isActive: $loginSuccessful) {
                     Button("LOG IN") {
-                        self.loginPressed = true
+                        if authViewModel.fieldsAreValid(fields: [email, password]) {
+                            authViewModel.signIn(email: email, password: password)
+                            
+                            if authViewModel.isSignedIn {
+                                self.loginSuccessful = true
+                            }
+                            else {
+                                self.errorSigningIn = true
+                            }
+                        }
+                        else {
+                            self.errorSigningIn = true
+                        }
                     }
                     .buttonStyle(WhiteTextTealBackgroundButton(width: UIScreen.main.bounds.width / 2, height: 60))
                     .padding()
