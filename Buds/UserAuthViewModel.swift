@@ -13,6 +13,7 @@
 
 import SwiftUI
 import FirebaseAuth
+import Firebase
 
 
 class UserAuthViewModel : ObservableObject {
@@ -63,7 +64,6 @@ class UserAuthViewModel : ObservableObject {
     // Attempts to register user with given email and password. If sign-up
     // is successful, self.signedIn is set to true so that user will remain
     // logged in even if they close the app.
-    // TODO: add user to database
     func signUp(email: String, password: String, displayName: String, location: String) {
         auth.createUser(withEmail: email, password: password) { [weak self] result, error in
             guard result != nil, error == nil else {
@@ -71,13 +71,20 @@ class UserAuthViewModel : ObservableObject {
                 return
             }
             
-            // Success
+            // add user to db
+            let db = Firestore.firestore()
+            db.collection("users").document(result!.user.uid).setData(["displayName": displayName, "locationStr": location]) { error in
+                guard error == nil else {
+                    self?.errorMessage = error!.localizedDescription
+                    return
+                }
+            }
+            
+            // Success (authentication and database both successful)
             DispatchQueue.main.async {
                 self?.signedIn = true
             }
         }
-        
-        // add user to db
     }
     
     func signOut() {

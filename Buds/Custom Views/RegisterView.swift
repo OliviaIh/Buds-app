@@ -77,10 +77,10 @@ struct RegisterView: View {
             // Register button
             NavigationLink(destination: ForGrabsView(), isActive: $registerSuccessful) {
                     Button("REGISTER") {
-                        if authViewModel.fieldsAreValid(fields: [email, password]) {
+                        if authViewModel.fieldsAreValid(fields: [email, password, displayName, addressString]) {
                             authViewModel.signUp(email: email, password: password, displayName: displayName, location: addressString)
                             
-                            if authViewModel.isSignedIn {
+                            if authViewModel.signedIn {
                                 self.registerSuccessful = true
                             }
                             else {

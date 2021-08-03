@@ -19,7 +19,7 @@ struct LoginView: View {
     @State private var password:String = ""
     
     @State private var loginSuccessful:Bool = false
-    @State private var errorSigningIn = false
+    @State private var errorSigningIn:Bool = false
     
     var body: some View {
         VStack {
@@ -66,7 +66,7 @@ struct LoginView: View {
                         if authViewModel.fieldsAreValid(fields: [email, password]) {
                             authViewModel.signIn(email: email, password: password)
                             
-                            if authViewModel.isSignedIn {
+                            if authViewModel.signedIn {
                                 self.loginSuccessful = true
                             }
                             else {
