@@ -26,7 +26,7 @@ class UserAuthViewModel : ObservableObject {
     }
     
     // Checks if given array of inputted field values are valid (i.e.
-    // if any number of non-whitespace and non-newline characters were
+    // if at least one non-whitespace and non-newline character was
     // inputted for each field). Returns true if all are valid and false
     // otherwise.
     func fieldsAreValid(fields:[String]) -> Bool {
@@ -60,6 +60,10 @@ class UserAuthViewModel : ObservableObject {
     }
     
     
+    // Attempts to register user with given email and password. If sign-up
+    // is successful, self.signedIn is set to true so that user will remain
+    // logged in even if they close the app.
+    // TODO: add user to database
     func signUp(email: String, password: String, displayName: String, location: String) {
         auth.createUser(withEmail: email, password: password) { [weak self] result, error in
             guard result != nil, error == nil else {

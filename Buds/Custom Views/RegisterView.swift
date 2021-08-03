@@ -13,12 +13,15 @@ import SwiftUI
 
 struct RegisterView: View {
     
+    @EnvironmentObject var authViewModel:UserAuthViewModel
+    
     @State private var email:String = ""
     @State private var password:String = ""
     @State private var displayName:String = ""
     @State private var addressString:String = ""
     
-    @State private var registerPressed:Bool = false
+    @State private var registerSuccessful:Bool = false
+    @State private var errorSigningUp:Bool = false
     
     var body: some View {
         VStack {
@@ -31,6 +34,18 @@ struct RegisterView: View {
                     .padding([.leading, .top])
                     .padding(.bottom, 40)
                 Spacer()
+            }
+            
+            // error message
+            if errorSigningUp {
+                HStack {
+                    Text("ERROR: " + authViewModel.errorMessage)
+                        .font(.custom("Avenir Heavy", size: 20))
+                        .foregroundColor(Color("Red Orange"))
+                        .multilineTextAlignment(.leading)
+                        .padding(.leading)
+                    Spacer()
+                }
             }
                         
             // Email text field
@@ -60,9 +75,21 @@ struct RegisterView: View {
                 .textFieldStyle(TealRectangleTextFieldStyle())
                 
             // Register button
-            NavigationLink(destination: ForGrabsView(), isActive: $registerPressed) {
+            NavigationLink(destination: ForGrabsView(), isActive: $registerSuccessful) {
                     Button("REGISTER") {
-                        self.registerPressed = true
+                        if authViewModel.fieldsAreValid(fields: [email, password]) {
+                            authViewModel.signUp(email: email, password: password, displayName: displayName, location: addressString)
+                            
+                            if authViewModel.isSignedIn {
+                                self.registerSuccessful = true
+                            }
+                            else {
+                                self.errorSigningUp = true
+                            }
+                        }
+                        else {
+                            self.errorSigningUp = true
+                        }
                     }
                     .buttonStyle(WhiteTextTealBackgroundButton(width: UIScreen.main.bounds.width / 2, height: 60))
                     .padding()

@@ -34,6 +34,7 @@ struct LoginView: View {
                 Spacer()
             }
             
+            // error message
             if errorSigningIn {
                 HStack {
                     Text("ERROR: " + authViewModel.errorMessage)
@@ -42,7 +43,6 @@ struct LoginView: View {
                         .multilineTextAlignment(.leading)
                         .padding(.leading)
                     Spacer()
-                    
                 }
             }
                         
