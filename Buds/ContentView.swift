@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             if authViewModel.signedIn {
-                ForGrabsView()
+                ButtonBarView()
             }
             else {
                 HomeView()

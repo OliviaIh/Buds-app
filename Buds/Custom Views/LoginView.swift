@@ -20,6 +20,7 @@ struct LoginView: View {
     
     @State private var loginSuccessful:Bool = false
     @State private var errorSigningIn:Bool = false
+    @State private var errorMessage:String? = nil
     
     var body: some View {
         VStack {
@@ -37,7 +38,7 @@ struct LoginView: View {
             // error message
             if errorSigningIn {
                 HStack {
-                    Text("ERROR: " + authViewModel.errorMessage)
+                    Text("ERROR: " + self.errorMessage!)
                         .font(.custom("Avenir Heavy", size: 20))
                         .foregroundColor(Color("Red Orange"))
                         .multilineTextAlignment(.leading)
@@ -61,12 +62,42 @@ struct LoginView: View {
                 .textFieldStyle(TealRectangleTextFieldStyle())
                 
             // Log in button
-            NavigationLink(destination: ForGrabsView(), isActive: $loginSuccessful) {
+            NavigationLink(destination: ButtonBarView(), isActive: $loginSuccessful) {
                     Button("LOG IN") {
-                        if authViewModel.fieldsAreValid(fields: [email, password]) {
-                            authViewModel.signIn(email: email, password: password)
+//                        if authViewModel.fieldsAreValid(fields: [email, password]) {
+//                            authViewModel.signIn(email: email, password: password)
+//
+//                            if authViewModel.signedIn {
+//                                self.loginSuccessful = true
+//                            }
+//                            else {
+//                                self.errorSigningIn = true
+//                            }
+//                        }
+//                        else {
+//                            self.errorSigningIn = true
+//                        }
+                        
+                        self.errorMessage = authViewModel.fieldsAreValid(fields: [email, password])
+                        
+                        if self.errorMessage == nil {
+                            print("valid")
+                        }
+                        else {
+                            print(self.errorMessage!)
+                        }
+                        
+                        if self.errorMessage == nil {
+                            self.errorMessage = authViewModel.signIn(email: email, password: password)
                             
-                            if authViewModel.signedIn {
+                            if self.errorMessage == nil {
+                                print("authorized")
+                            }
+                            else {
+                                print(self.errorMessage!)
+                            }
+                            
+                            if self.errorMessage == nil {
                                 self.loginSuccessful = true
                             }
                             else {

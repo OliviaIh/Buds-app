@@ -75,9 +75,12 @@ struct RegisterView: View {
                 .textFieldStyle(TealRectangleTextFieldStyle())
                 
             // Register button
-            NavigationLink(destination: ForGrabsView(), isActive: $registerSuccessful) {
+            NavigationLink(destination: ButtonBarView(), isActive: $registerSuccessful) {
                     Button("REGISTER") {
-                        if authViewModel.fieldsAreValid(fields: [email, password, displayName, addressString]) {
+                        
+                        var error:String? = authViewModel.fieldsAreValid(fields: [email, password, displayName, addressString])
+                        
+                        if error == nil {
                             authViewModel.signUp(email: email, password: password, displayName: displayName, location: addressString)
                             
                             if authViewModel.signedIn {

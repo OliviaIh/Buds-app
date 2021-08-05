@@ -28,36 +28,73 @@ class UserAuthViewModel : ObservableObject {
     
     // Checks if given array of inputted field values are valid (i.e.
     // if at least one non-whitespace and non-newline character was
-    // inputted for each field). Returns true if all are valid and false
-    // otherwise.
-    func fieldsAreValid(fields:[String]) -> Bool {
+    // inputted for each field). Returns nil if all are valid and error
+    // message string otherwise.
+    func fieldsAreValid(fields:[String]) -> String? {
+                
         for field in fields {
             let cleaned = field.trimmingCharacters(in: .whitespacesAndNewlines)
             
             if cleaned.isEmpty {
-                self.errorMessage = "Please fill in all fields."
-                return false
+                return "Please fill in all fields."
             }
         }
-        return true
+        return nil
     }
     
     
     // Attempts to sign user in with given email and password. If sign-in
     // is successful, self.signedIn is set to true so that user will remain
     // logged in even if they close the app.
-    func signIn(email: String, password: String) {
+    func signIn(email: String, password: String) -> String? {
+        
+        var errorMessage:String? = "none"
+                
         auth.signIn(withEmail: email, password: password) { [weak self] result, error in
-            guard result != nil, error == nil else {
-                self?.errorMessage = error!.localizedDescription
-                return
-            }
+//            guard result != nil, error == nil else {
+//                print("Here")
+////                self?.errorMessage = error!.localizedDescription
+//                errorMessage = error!.localizedDescription
+//
+//                if errorMessage == nil {
+//                    print("no error signin")
+//                }
+//                else {
+//                    print(errorMessage! + " signin")
+//                }
+//
+//                return
+//            }
+//
+//            // Success
+//            DispatchQueue.main.async {
+//                self?.signedIn = true
+//            }
             
-            // Success
-            DispatchQueue.main.async {
-                self?.signedIn = true
+            
+//            if error == nil {
+//                errorMessage = nil
+//                DispatchQueue.main.async {
+//                    self?.signedIn = true
+//                }
+//            }
+//            else {
+//                print("here")
+//                errorMessage = error!.localizedDescription
+//            }
+            
+            if error != nil {
+                print("here")
+                errorMessage = error!.localizedDescription
+//                return
+            }
+            else {
+                DispatchQueue.main.async {
+                    self?.signedIn = true
+                }
             }
         }
+        return errorMessage
     }
     
     

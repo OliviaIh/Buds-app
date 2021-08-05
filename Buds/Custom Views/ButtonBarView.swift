@@ -9,54 +9,41 @@ import SwiftUI
 
 struct ButtonBarView: View {
     @State var selectedIndex = 10
-
+    
     let tabBarImagesNames = ["For Grabs", "ISO"]
     
     var body: some View {
-        switch selectedIndex{
-            case 0:
-                LoginView()
-                
-                
-            case 1:
-                ISOView()
-
-
-
-
-            default:
-                Spacer()
-                HStack(alignment: .bottom){
-                    ForEach(0..<2) { num in
-                        Button(action: {
-                            if selectedIndex != num{
-                                selectedIndex = num
-                                print(selectedIndex)
-                                print(num)
-                                
-                            }
-                           
-                            
-                            
-                            
-                            
-                        }, label: {
-                            Image(tabBarImagesNames[num])
-                        })
-                    }
+        TabView {
+            ForGrabsView()
+                .tabItem {
+                    Label("for grabs", systemImage: "cart.badge.plus")
                 }
-
-
-
-
-
-
+            
+            ISOView()
+                .tabItem {
+                    Label("in search of", systemImage: "questionmark.circle")
+                }
+            
+            NewPostView()
+                .tabItem {
+                    Label("new post", systemImage: "plus.square.fill")
+                }
+            
+            MessagesView()
+                .tabItem {
+                    Label("messages", systemImage: "tray")
+                }
+            
+            AccountSettingsView()
+                .tabItem {
+                    Label("profile", systemImage: "person.crop.circle")
+                }
         }
-
-
-
-
-
+        .onAppear() {
+            UITabBar.appearance().barTintColor = .white
+        }
+        .accentColor(Color("Dark Teal"))
+        
     }
 }
 
