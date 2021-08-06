@@ -12,6 +12,7 @@
 		7F282FD426BBFA36008E647C /* NewPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F282FD326BBFA36008E647C /* NewPostView.swift */; };
 		7F282FD626BBFA5D008E647C /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F282FD526BBFA5D008E647C /* MessagesView.swift */; };
 		7F282FD826BBFA8F008E647C /* AccountSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F282FD726BBFA8F008E647C /* AccountSettingsView.swift */; };
+		7F282FDA26BD5C23008E647C /* CommonComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F282FD926BD5C23008E647C /* CommonComponents.swift */; };
 		7F5CF83826A66DE800E23E22 /* BudsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5CF83726A66DE800E23E22 /* BudsApp.swift */; };
 		7F5CF83A26A66DE800E23E22 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5CF83926A66DE800E23E22 /* ContentView.swift */; };
 		7F5CF83C26A66DEA00E23E22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F5CF83B26A66DEA00E23E22 /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 		7F282FD326BBFA36008E647C /* NewPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostView.swift; sourceTree = "<group>"; };
 		7F282FD526BBFA5D008E647C /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		7F282FD726BBFA8F008E647C /* AccountSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsView.swift; sourceTree = "<group>"; };
+		7F282FD926BD5C23008E647C /* CommonComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonComponents.swift; sourceTree = "<group>"; };
 		7F5CF83426A66DE800E23E22 /* Buds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F5CF83726A66DE800E23E22 /* BudsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsApp.swift; sourceTree = "<group>"; };
 		7F5CF83926A66DE800E23E22 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			children = (
 				7FCD0B3326AAAAD20095A259 /* CustomTextFieldStyles.swift */,
 				7FCD0B3726AAB30B0095A259 /* CustomButtonStyles.swift */,
+				7F282FD926BD5C23008E647C /* CommonComponents.swift */,
 			);
 			path = Styling;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 			files = (
 				7F282FD026BBE05B008E647C /* ButtonBarView.swift in Sources */,
 				7FCD0B3626AAB2640095A259 /* ForGrabsView.swift in Sources */,
+				7F282FDA26BD5C23008E647C /* CommonComponents.swift in Sources */,
 				7FCD0B2E26AA3A1E0095A259 /* HomeView.swift in Sources */,
 				7F282FD426BBFA36008E647C /* NewPostView.swift in Sources */,
 				7FCD0B3026AA4C640095A259 /* RegisterView.swift in Sources */,

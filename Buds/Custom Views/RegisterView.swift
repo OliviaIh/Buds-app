@@ -27,14 +27,8 @@ struct RegisterView: View {
         VStack {
             
             // Register title
-            HStack {
-                Text("register")
-                    .font(.custom("Avenir Medium", size: 48))
-                    .foregroundColor(Color("Dark Teal"))
-                    .padding([.leading, .top])
-                    .padding(.bottom, 40)
-                Spacer()
-            }
+            TopLeftTitle(title: "register")
+                .padding(.bottom, 40)
             
             // error message
             if errorSigningUp {
