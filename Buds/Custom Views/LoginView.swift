@@ -26,14 +26,8 @@ struct LoginView: View {
         VStack {
             
             // Log in title
-            HStack {
-                Text("log in")
-                    .font(.custom("Avenir Medium", size: 48))
-                    .foregroundColor(Color("Dark Teal"))
-                    .padding([.leading, .top])
-                    .padding(.bottom, 40)
-                Spacer()
-            }
+            TopLeftTitle(title: "log in")
+                .padding(.bottom, 40)
             
             // error message
             if errorSigningIn {
@@ -111,6 +105,10 @@ struct LoginView: View {
                     .buttonStyle(WhiteTextTealBackgroundButton(width: UIScreen.main.bounds.width / 2, height: 60))
                     .padding()
                 }
+            
+//            Button("test") {
+//                authViewModel.signIn(email: email, password: password)
+//            }
             
             Spacer()
         }
