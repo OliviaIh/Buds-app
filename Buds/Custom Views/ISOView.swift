@@ -8,8 +8,25 @@
 import SwiftUI
 
 struct ISOView: View {
+    
+    @State private var search:String = ""
+    
     var body: some View {
-        Text("ISO view")
+        VStack {
+            TitleAndSearchBar(title: "in search of", searchInquiry: $search)
+            
+            // filter buttons
+            
+            
+            // feed
+            ScrollView {
+                ForEach(0..<100) { num in
+                    Text("\(num)")
+                }
+            }
+        }
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
     }
 }
 
