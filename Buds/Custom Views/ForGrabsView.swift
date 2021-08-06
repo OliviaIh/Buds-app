@@ -13,13 +13,24 @@ import SwiftUI
 
 struct ForGrabsView: View {
     
-    @EnvironmentObject var authViewModel:UserAuthViewModel
-    
+    @State private var search:String = ""
+        
     var body: some View {
-        Button("temporary sign out") {
-            authViewModel.signOut()
+        VStack {
+            TitleAndSearchBar(title: "for grabs", searchInquiry: $search)
+            
+            // filter buttons
+            
+            
+            // feed
+            ScrollView {
+                ForEach(0..<100) { num in
+                    Text("\(num)")
+                }
+            }
         }
-        .buttonStyle(WhiteTextTealBackgroundButton(width: 300, height: 100))
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
     }
 }
 
