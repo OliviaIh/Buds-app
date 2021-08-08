@@ -124,9 +124,59 @@ class UserAuthViewModel : ObservableObject {
         }
     }
     
+    
     func signOut() {
         try? auth.signOut()
         
         self.signedIn = false
+    }
+    
+    
+    func getCurrentUserData() -> [String: Any]? {
+        let db = Firestore.firestore()
+        let uid = getCurrentUserID()
+        var documentData:[String: Any]? = nil
+        
+        if let uid = uid {      // if uid != nil
+//            print(uid)
+            db.collection("users").document(uid).getDocument { document, error in
+                if error == nil {
+                    if document != nil && document!.exists {
+//                        print("data retrieved")
+//                        print(document!.data())
+                        documentData = document!.data()
+                    }
+                }
+            }
+        }
+        
+//        if let documentData = documentData {
+//            print(documentData)
+//        }
+//        else {
+//            print("nil")
+//        }
+        
+        return documentData
+    }
+    
+    
+    func getCurrentUserEmail() -> String {
+        if isSignedIn {
+            return auth.currentUser!.email!
+        }
+        else {
+            return ""
+        }
+    }
+    
+    
+    private func getCurrentUserID() -> String? {
+        if isSignedIn {
+            return auth.currentUser!.uid
+        }
+        else {
+            return nil
+        }
     }
 }

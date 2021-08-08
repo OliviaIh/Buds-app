@@ -10,15 +10,16 @@ import SwiftUI
 struct AccountSettingsView: View {
     
     @EnvironmentObject var authViewModel:UserAuthViewModel
-        
-    private let textFieldWidth = 0
-    
+            
     @State private var displayName:String = ""
     @State private var email:String = ""
     @State private var password:String = ""
     @State private var location:String = ""
     
     var body: some View {
+        
+//        let userData = authViewModel.getCurrentUserData()
+        
         VStack {
             TopLeftTitle(title: "account/settings")
                 .padding(.bottom, 5)
@@ -26,23 +27,41 @@ struct AccountSettingsView: View {
                 
             
             ScrollView {
+                //profile pic setting
                 ProfilePictureSetting()
                 
-                Setting(label: "display name", input: $displayName)
-                Setting(label: "email", input: $email)
-                Setting(label: "password", input: $password)
-                Setting(label: "location", input: $location)
+                // text field settings
+                Setting(label: "display name", currentValue: "testing", newValue: $displayName)
+                Setting(label: "email", currentValue: authViewModel.getCurrentUserEmail(), newValue: $email)
+                Setting(label: "password", currentValue: "**HIDDEN**", newValue: $password)
+                Setting(label: "location", currentValue: "blah", newValue: $location)
                 
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                    Text("save changes")
-                })
+                // save changes button
+                Button("save changes") {
+                    // TODO: code that changes backend
+                    // if x field isn't empty, call appropriate function.
+                    // password must be at least 6 chars (check for that
+                    // instead of displaying error message?)
+                    // refresh view to show changes
+                }
                 .buttonStyle(WhiteTextTealBackgroundButton(width: 200, height: 50))
                 .padding(.bottom)
                 
-                Button("temporary sign out") {
+                // extra options
+                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                    ExtraOption(text: "my posts")
+                })
+                
+                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                    ExtraOption(text: "ratings and reviews")
+                })
+                
+                Button(action: {
                     authViewModel.signOut()
-                }
-                .buttonStyle(WhiteTextTealBackgroundButton(width: 300, height: 100))
+                }, label: {
+                    ExtraOption(text: "log out")
+                })
+                
             }
         }
         .navigationBarTitle("")
@@ -80,7 +99,8 @@ struct ProfilePictureSetting: View {
 struct Setting: View {
     
     var label:String
-    @Binding var input:String
+    var currentValue:String
+    @Binding var newValue:String
     
     var body: some View {
         HStack {
@@ -89,12 +109,14 @@ struct Setting: View {
                     .foregroundColor(Color("Dark Teal"))
                     .font(.custom("Avenir Medium", size: 20))
                     .multilineTextAlignment(.leading)
-                Text("\tcurrent: " + "CHANGE TO VALUE IN DATABASE")
+                Text("\tcurrent: " + currentValue)
                     .foregroundColor(Color("Dark Teal"))
                     .font(.custom("Helvetica Neue Italic", size: 16))
                     .multilineTextAlignment(.leading)
-                TextField("new " + label, text: $input)
+                TextField("new " + label, text: $newValue)
                     .textFieldStyle(TealRectangleTextFieldStyle())
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
             }
             .padding([.horizontal, .bottom])
             
@@ -102,6 +124,29 @@ struct Setting: View {
         }
     }
 }
+
+
+struct ExtraOption: View {
+    
+    var text:String
+    
+    var body: some View {
+        HStack {
+            Text(text)
+                .font(.custom("Avenir Medium", size: 16))
+                .foregroundColor(Color("Dark Teal"))
+                .padding([.leading, .vertical])
+            Spacer()
+            Image(systemName: "chevron.right")
+                .font(.title)
+                .foregroundColor(Color("Dark Teal"))
+                .padding(.trailing)
+        }
+        .background(Color("Light Gray"))
+        .padding(.bottom, 1)
+    }
+}
+
 
 struct AccountSettingsView_Previews: PreviewProvider {
     static var previews: some View {
