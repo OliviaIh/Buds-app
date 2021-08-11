@@ -24,6 +24,7 @@ struct AccountSettingsView: View {
     @State private var newPassword:String = ""
     @State private var newLocation:String = ""
         
+    
     var body: some View {
         VStack {
             TopLeftTitle(title: "account/settings")
@@ -32,7 +33,6 @@ struct AccountSettingsView: View {
                 
             
             ScrollView {
-                //profile pic setting
                 ProfilePictureSetting()
                 
                 // text field settings
@@ -48,7 +48,7 @@ struct AccountSettingsView: View {
                     // password must be at least 6 chars (check for that
                     // instead of displaying error message?)
                     // refresh view to show changes
-                    displayUserData()
+                    reloadUserData()
                 }
                 .buttonStyle(WhiteTextTealBackgroundButton(width: 200, height: 50))
                 .padding(.bottom)
@@ -73,13 +73,28 @@ struct AccountSettingsView: View {
         .navigationBarTitle("")
         .navigationBarHidden(true)
         .onAppear {
-            displayUserData()
+            getUserData()
         }
     }
     
     
-    // Updates state variables that display user data
-    private func displayUserData() {
+    /*
+     Changes current displayed user info to "loading..."
+     while getting updated user data
+     */
+    private func reloadUserData() {
+        currentDisplayName = "loading..."
+        currentEmail = "loading..."
+        currentLocation = "loading..."
+        
+        getUserData()
+    }
+    
+    
+    /*
+    Updates state variables that display user data
+    */
+    private func getUserData() {
         currentEmail = authViewModel.getCurrentUserEmail()
 
         authViewModel.getCurrentUserData { data in

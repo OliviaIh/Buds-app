@@ -59,7 +59,9 @@ struct MessagesView: View {
 }
 
 
-// View for a single conversation row
+/*
+ View for a single conversation row
+ */
 struct Conversation: View {
     
     var recipientName:String
@@ -73,14 +75,7 @@ struct Conversation: View {
     var body: some View {
         HStack {
             // profile pic placeholder
-            ZStack {
-                Circle()
-                    .frame(width: 58, height: 58)
-                    .foregroundColor(Color("Red Orange"))
-                Image(systemName: "person.crop.circle")
-                    .foregroundColor(Color("Orange"))
-                    .font(.system(size: 62, weight: .thin))
-            }
+            ProfilePicPlaceholder(size: 58)
             
             // text
             VStack(alignment: .leading) {
@@ -103,9 +98,11 @@ struct Conversation: View {
     }
     
     
-    // Returns the appropriate preview of the last message in the convo.
-    // Message preview is truncated and ellipses are added to the end if
-    // it's longer than messagePreviewCharLimit
+    /*
+     Returns the appropriate preview of the last message in the convo.
+     Message preview is truncated and ellipses are added to the end if
+     it's longer than messagePreviewCharLimit
+     */
     private func getMessagePreview() -> String {
         var preview:String = ""
         
