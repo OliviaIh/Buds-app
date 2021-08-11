@@ -5,21 +5,26 @@
 //  Created by Olivia Ih on 8/5/21.
 //
 
+/*
+ A view showing the account/settings page, and some helper subviews
+ */
+
 import SwiftUI
 
 struct AccountSettingsView: View {
     
     @EnvironmentObject var authViewModel:UserAuthViewModel
             
-    @State private var displayName:String = ""
-    @State private var email:String = ""
-    @State private var password:String = ""
-    @State private var location:String = ""
+    @State private var currentDisplayName:String = "loading..."
+    @State private var currentLocation:String = "loading..."
+    @State private var currentEmail:String = "loading..."
     
+    @State private var newDisplayName:String = ""
+    @State private var newEmail:String = ""
+    @State private var newPassword:String = ""
+    @State private var newLocation:String = ""
+        
     var body: some View {
-        
-//        let userData = authViewModel.getCurrentUserData()
-        
         VStack {
             TopLeftTitle(title: "account/settings")
                 .padding(.bottom, 5)
@@ -31,10 +36,10 @@ struct AccountSettingsView: View {
                 ProfilePictureSetting()
                 
                 // text field settings
-                Setting(label: "display name", currentValue: "testing", newValue: $displayName)
-                Setting(label: "email", currentValue: authViewModel.getCurrentUserEmail(), newValue: $email)
-                Setting(label: "password", currentValue: "**HIDDEN**", newValue: $password)
-                Setting(label: "location", currentValue: "blah", newValue: $location)
+                Setting(label: "display name", currentValue: currentDisplayName, newValue: $newDisplayName)
+                Setting(label: "email", currentValue: currentEmail, newValue: $newEmail)
+                Setting(label: "password", currentValue: "**HIDDEN**", newValue: $newPassword)
+                Setting(label: "location", currentValue: currentLocation, newValue: $newLocation)
                 
                 // save changes button
                 Button("save changes") {
@@ -43,6 +48,7 @@ struct AccountSettingsView: View {
                     // password must be at least 6 chars (check for that
                     // instead of displaying error message?)
                     // refresh view to show changes
+                    displayUserData()
                 }
                 .buttonStyle(WhiteTextTealBackgroundButton(width: 200, height: 50))
                 .padding(.bottom)
@@ -66,6 +72,20 @@ struct AccountSettingsView: View {
         }
         .navigationBarTitle("")
         .navigationBarHidden(true)
+        .onAppear {
+            displayUserData()
+        }
+    }
+    
+    
+    // Updates state variables that display user data
+    private func displayUserData() {
+        currentEmail = authViewModel.getCurrentUserEmail()
+
+        authViewModel.getCurrentUserData { data in
+            currentDisplayName = data!["displayName"] as! String
+            currentLocation = data!["locationStr"] as! String
+        }
     }
 }
 
@@ -73,16 +93,7 @@ struct AccountSettingsView: View {
 struct ProfilePictureSetting: View {
     var body: some View {
         VStack {
-                
-                // profile pic placeholder
-                ZStack {
-                    Circle()
-                        .frame(width: 96, height: 96)
-                        .foregroundColor(Color("Red Orange"))
-                    Image(systemName: "person.crop.circle")
-                        .foregroundColor(Color("Orange"))
-                        .font(.system(size: 100, weight: .thin))
-                }
+                ProfilePicPlaceholder(size: 96)
                 
                 // change profile pic button
                 Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {

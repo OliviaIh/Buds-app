@@ -26,6 +26,7 @@ class UserAuthViewModel : ObservableObject {
         return auth.currentUser != nil
     }
     
+    
     // Checks if given array of inputted field values are valid (i.e.
     // if at least one non-whitespace and non-newline character was
     // inputted for each field). Returns nil if all are valid and error
@@ -125,6 +126,7 @@ class UserAuthViewModel : ObservableObject {
     }
     
     
+    // Signs the current user out
     func signOut() {
         try? auth.signOut()
         
@@ -132,35 +134,26 @@ class UserAuthViewModel : ObservableObject {
     }
     
     
-    func getCurrentUserData() -> [String: Any]? {
+    // Fetches the current user's data/document from the "users" collection of
+    // the firestore database
+    func getCurrentUserData(completionHandler: @escaping (([String: Any]?) -> Void)) {
         let db = Firestore.firestore()
         let uid = getCurrentUserID()
-        var documentData:[String: Any]? = nil
         
         if let uid = uid {      // if uid != nil
-//            print(uid)
             db.collection("users").document(uid).getDocument { document, error in
                 if error == nil {
                     if document != nil && document!.exists {
-//                        print("data retrieved")
-//                        print(document!.data())
-                        documentData = document!.data()
+                        completionHandler(document!.data())
                     }
                 }
             }
         }
-        
-//        if let documentData = documentData {
-//            print(documentData)
-//        }
-//        else {
-//            print("nil")
-//        }
-        
-        return documentData
     }
     
     
+    // Gets current user's email. Returns empty string if there's no
+    // current user
     func getCurrentUserEmail() -> String {
         if isSignedIn {
             return auth.currentUser!.email!
@@ -171,6 +164,8 @@ class UserAuthViewModel : ObservableObject {
     }
     
     
+    // Gets the current user's user ID. Returns nil if there's no
+    // current user
     private func getCurrentUserID() -> String? {
         if isSignedIn {
             return auth.currentUser!.uid
