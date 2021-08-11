@@ -19,7 +19,6 @@ import Firebase
 class UserAuthViewModel : ObservableObject {
     
     private let auth = Auth.auth()
-    @Published var errorMessage = ""
     @Published var signedIn = false
     
     var isSignedIn: Bool {
@@ -49,69 +48,33 @@ class UserAuthViewModel : ObservableObject {
     /*
      Attempts to sign user in with given email and password. If sign-in
      is successful, self.signedIn is set to true so that user will remain
-     logged in even if they close the app.
+     logged in even if they close the app. Returns error message, if any.
      */
-    func signIn(email: String, password: String) -> String? {
-        
-        var errorMessage:String? = "none"
-                
+    func signIn(email: String, password: String, completionHandler: @escaping ((String?) -> Void)) -> String? {
         auth.signIn(withEmail: email, password: password) { [weak self] result, error in
-//            guard result != nil, error == nil else {
-//                print("Here")
-////                self?.errorMessage = error!.localizedDescription
-//                errorMessage = error!.localizedDescription
-//
-//                if errorMessage == nil {
-//                    print("no error signin")
-//                }
-//                else {
-//                    print(errorMessage! + " signin")
-//                }
-//
-//                return
-//            }
-//
-//            // Success
-//            DispatchQueue.main.async {
-//                self?.signedIn = true
-//            }
-            
-            
-//            if error == nil {
-//                errorMessage = nil
-//                DispatchQueue.main.async {
-//                    self?.signedIn = true
-//                }
-//            }
-//            else {
-//                print("here")
-//                errorMessage = error!.localizedDescription
-//            }
-            
-            if error != nil {
-                print("here")
-                errorMessage = error!.localizedDescription
-//                return
+            guard result != nil, error == nil else {
+                completionHandler(error!.localizedDescription)
+                return
             }
-            else {
-                DispatchQueue.main.async {
-                    self?.signedIn = true
-                }
+            
+            DispatchQueue.main.async {
+                self?.signedIn = true
             }
         }
-        return errorMessage
+        
+        return nil
     }
     
     
     /*
      Attempts to register user with given email and password. If sign-up
      is successful, self.signedIn is set to true so that user will remain
-     logged in even if they close the app.
+     logged in even if they close the app. Returns error message, if any.
      */
-    func signUp(email: String, password: String, displayName: String, location: String) {
+    func signUp(email: String, password: String, displayName: String, location: String, completionHandler: @escaping ((String?) -> Void)) -> String? {
         auth.createUser(withEmail: email, password: password) { [weak self] result, error in
             guard result != nil, error == nil else {
-                self?.errorMessage = error!.localizedDescription
+                completionHandler(error!.localizedDescription)
                 return
             }
             
@@ -119,7 +82,7 @@ class UserAuthViewModel : ObservableObject {
             let db = Firestore.firestore()
             db.collection("users").document(result!.user.uid).setData(["displayName": displayName, "locationStr": location]) { error in
                 guard error == nil else {
-                    self?.errorMessage = error!.localizedDescription
+                    completionHandler(error!.localizedDescription)
                     return
                 }
             }
@@ -129,11 +92,13 @@ class UserAuthViewModel : ObservableObject {
                 self?.signedIn = true
             }
         }
+        
+        return nil
     }
     
     
     /*
-     Signs the user out
+     Signs the user out.
      */
     func signOut() {
         try? auth.signOut()
@@ -144,7 +109,7 @@ class UserAuthViewModel : ObservableObject {
     
     /*
      Fetches the current user's data/document from the "users" collection of
-     the firestore database
+     the firestore database.
      */
     func getCurrentUserData(completionHandler: @escaping (([String: Any]?) -> Void)) {
         let db = Firestore.firestore()
@@ -164,7 +129,7 @@ class UserAuthViewModel : ObservableObject {
     
     /*
      Gets current user's email. Returns empty string if there's no
-     current user
+     current user.
      */
     func getCurrentUserEmail() -> String {
         if isSignedIn {
@@ -177,8 +142,8 @@ class UserAuthViewModel : ObservableObject {
     
     
     /*
-     Gets the current user's user ID. Returns nil if there's no
-     current user
+     Gets the current user's UID. Returns nil if there's no
+     current user.
      */
     private func getCurrentUserID() -> String? {
         if isSignedIn {
