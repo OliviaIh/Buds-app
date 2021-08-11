@@ -67,6 +67,24 @@ struct TitleAndSearchBar: View {
 }
 
 
+// Default/placeholder profile pic
+struct ProfilePicPlaceholder: View {
+    
+    var size:CGFloat
+    
+    var body: some View {
+        ZStack {
+            Circle()
+                .frame(width: size, height: size)
+                .foregroundColor(Color("Red Orange"))
+            Image(systemName: "person.crop.circle")
+                .foregroundColor(Color("Orange"))
+                .font(.system(size: size + 4, weight: .thin))
+        }
+    }
+}
+
+
 //struct TopLeftTitle_Previews: PreviewProvider {
 //    static var previews: some View {
 //        TopLeftTitle(title: "blah")
