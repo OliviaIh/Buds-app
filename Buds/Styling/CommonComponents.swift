@@ -43,7 +43,7 @@ struct TopLeftTitle: View {
     var body: some View {
         HStack {
             Text(title)
-                .font(.custom("Avenir Medium", size: 48))
+                .font(.custom("Avenir Medium", size: 35))
                 .foregroundColor(Color("Dark Teal"))
                 .padding([.leading, .top])
             Spacer()
