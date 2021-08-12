@@ -20,8 +20,8 @@ struct ISOView: View {
             
             // feed
             ScrollView {
-                ForEach(0..<100) { num in
-                    Text("\(num)")
+                ForEach(0..<10) { _ in
+                    ISOPost()
                 }
             }
         }
