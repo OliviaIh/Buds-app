@@ -69,9 +69,6 @@ struct Conversation: View {
     var lastMessageSentByUser:Bool
     var lastMessage:String
     
-    private let messagePreviewCharLimit = 42    // hardcoded for iPhone 11
-    
-    
     var body: some View {
         HStack {
             // profile pic placeholder
@@ -93,6 +90,8 @@ struct Conversation: View {
                 Text(getMessagePreview())
                     .font(.custom("Avenir", size: 15))
                     .foregroundColor(Color("Dark Teal"))
+                    .lineLimit(1)
+                    .padding(.trailing, 30)
             }
         }
     }
@@ -100,8 +99,6 @@ struct Conversation: View {
     
     /*
      Returns the appropriate preview of the last message in the convo.
-     Message preview is truncated and ellipses are added to the end if
-     it's longer than messagePreviewCharLimit
      */
     private func getMessagePreview() -> String {
         var preview:String = ""
@@ -114,11 +111,6 @@ struct Conversation: View {
         }
         
         preview += lastMessage
-        
-        if preview.count > messagePreviewCharLimit {
-            let lastChar = preview.index(preview.startIndex, offsetBy: messagePreviewCharLimit)
-            preview = String(preview[...lastChar]) + "..."
-        }
         
         return preview
     }

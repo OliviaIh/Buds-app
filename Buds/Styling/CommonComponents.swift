@@ -72,6 +72,48 @@ struct TitleAndSearchBar: View {
     }
 }
 
+/*
+ Horizontal ScrollView of toggleable filter buttons
+ */
+struct FilterButtons: View {
+    
+    // for demo; retrieve filters list from backend in future (?)
+    private let filters = ["furniture", "books", "clothes", "outdoors"]
+    
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack {
+                ForEach(0..<filters.count) { i in
+                    FilterButton(label: filters[i])
+                }
+            }
+        }
+        .padding(.horizontal)
+    }
+    
+    
+    private struct FilterButton: View {
+        
+        var label:String
+        @State var selected:Bool = false
+        
+        var body: some View {
+            if selected {
+                Button(label.uppercased()) {
+                    selected.toggle()
+                }
+                .buttonStyle(ToggledFilterButton())
+            }
+            else {
+                Button(label.uppercased()) {
+                    selected.toggle()
+                }
+                .buttonStyle(NotToggledFilterButton())
+            }
+        }
+    }
+}
+
 
 /*
  Default/placeholder profile pic
@@ -112,6 +154,7 @@ struct PosterInfo: View {
         }
     }
 }
+
 
 struct PostToolbar: View {
     
