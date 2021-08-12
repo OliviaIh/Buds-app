@@ -19,10 +19,10 @@ struct WhiteTextTealBackgroundButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .foregroundColor(Color.white)
-            .frame(width: width, height: height, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-            .background(Color("Teal"))
-            .cornerRadius(6.0)
             .font(.custom("Avenir Black", size: 18))
+            .frame(width: width, height: height, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            .background(RoundedRectangle(cornerRadius: 6)
+                            .foregroundColor(Color("Teal")))
     }
 }
 
@@ -35,9 +35,40 @@ struct TealTextWhiteBackgroundButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .foregroundColor(Color("Teal"))
-            .frame(width: width, height: height, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-            .border(/*@START_MENU_TOKEN@*/Color("Teal")/*@END_MENU_TOKEN@*/, width: 4)
-            .cornerRadius(6.0)
             .font(.custom("Avenir Black", size: 18))
+
+            .frame(width: width - 2, height: height - 2, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) // -2 to account for lineWidth of 4
+            .background(RoundedRectangle(cornerRadius: 6)
+                            .stroke(Color("Teal"), lineWidth: 4))
+    }
+}
+
+
+struct NotToggledFilterButton: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundColor(Color("Dark Teal"))
+            .font(.custom("Avenir Black", size: 13))
+            .lineLimit(1)
+            .padding(.horizontal, 2)
+            .frame(width: 105, height: 20, alignment: .center)
+            .background(RoundedRectangle(cornerRadius: 15)
+                            .stroke(Color("Teal"), lineWidth: 2))
+            .padding(.all, 1)
+    }
+}
+
+
+struct ToggledFilterButton: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundColor(.white)
+            .font(.custom("Avenir Black", size: 13))
+            .lineLimit(1)
+            .padding(.horizontal, 2)
+            .frame(width: 105, height: 20, alignment: .center)
+            .background(RoundedRectangle(cornerRadius: 15)
+                            .foregroundColor(Color("Teal")))
+            .padding(.all, 1)
     }
 }

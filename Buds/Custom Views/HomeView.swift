@@ -41,25 +41,23 @@ struct HomeView: View {
             // Log in and register buttons
             HStack {
                 NavigationLink(destination: LoginView(), tag: "login", selection: $selection) {
-                    EmptyView()
+                    Button("LOG IN") {
+                        self.selection = "login"
+                    }
+                    .buttonStyle(WhiteTextTealBackgroundButton(width: buttonWidth, height: buttonHeight))
                 }
+                
+//                Spacer()
+                
                 NavigationLink(destination: RegisterView(), tag: "register", selection: $selection) {
-                    EmptyView()
+                    Button("REGISTER") {
+                        self.selection = "register"
+                    }
+                    .buttonStyle(TealTextWhiteBackgroundButton(width: buttonWidth, height: buttonHeight))
                 }
-                
-                Button("LOG IN") {
-                    self.selection = "login"
-                }
-                .buttonStyle(WhiteTextTealBackgroundButton(width: buttonWidth, height: buttonHeight))
-                
-                
-                Button("REGISTER") {
-                    self.selection = "register"
-                }
-                .buttonStyle(TealTextWhiteBackgroundButton(width: buttonWidth, height: buttonHeight))
             }
             .padding(.bottom, 30)
-            .padding(.horizontal, 10)
+            .padding(.horizontal, 10.0)
         }
     }
 }
