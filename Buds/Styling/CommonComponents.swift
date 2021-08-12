@@ -13,9 +13,11 @@
 import SwiftUI
 
 
-// Looks the same as TealRectangleTextFieldStyle except there's
-// a magnifying glass SFSymbol next to the TextField and the
-// TextField's placeholder text is "search".
+/*
+ Looks the same as TealRectangleTextFieldStyle except there's
+ a magnifying glass SFSymbol next to the TextField and the
+ TextField's placeholder text is "search".
+ */
 struct SearchBar: View {
     
     @Binding var searchInquiry:String
@@ -35,7 +37,9 @@ struct SearchBar: View {
 }
 
 
-// Left-justified title meant for tops of pages
+/*
+ Left-justified title meant for tops of pages
+ */
 struct TopLeftTitle: View {
     
     var title:String
@@ -52,7 +56,9 @@ struct TopLeftTitle: View {
 }
 
 
-// VStack of TopLeftTitle and SearchBar for tops of pages
+/*
+ VStack of TopLeftTitle and SearchBar for tops of pages
+ */
 struct TitleAndSearchBar: View {
     
     var title:String
@@ -62,6 +68,26 @@ struct TitleAndSearchBar: View {
         VStack {
             TopLeftTitle(title: title)
             SearchBar(searchInquiry: $searchInquiry)
+        }
+    }
+}
+
+
+/*
+ Default/placeholder profile pic
+ */
+struct ProfilePicPlaceholder: View {
+    
+    var size:CGFloat
+    
+    var body: some View {
+        ZStack {
+            Circle()
+                .frame(width: size, height: size)
+                .foregroundColor(Color("Red Orange"))
+            Image(systemName: "person.crop.circle")
+                .foregroundColor(Color("Orange"))
+                .font(.system(size: size + 4, weight: .thin))
         }
     }
 }
