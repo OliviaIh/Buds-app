@@ -51,23 +51,36 @@ struct AccountSettingsView: View {
                     reloadUserData()
                 }
                 .buttonStyle(WhiteTextTealBackgroundButton(width: 200, height: 50))
-                .padding(.bottom)
+                .padding(.bottom, 30)
                 
                 // extra options
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                    ExtraOption(text: "my posts")
-                })
-                
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                    ExtraOption(text: "ratings and reviews")
-                })
-                
-                Button(action: {
-                    authViewModel.signOut()
-                }, label: {
-                    ExtraOption(text: "log out")
-                })
-                
+                VStack {
+                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                        ExtraOption(text: "bookmarked posts")
+                    })
+                    
+                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                        ExtraOption(text: "waitlists")
+                    })
+                    .padding(.bottom, 30)
+                    
+                    
+                    
+                    
+                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                        ExtraOption(text: "my posts")
+                    })
+                    
+                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                        ExtraOption(text: "ratings and reviews")
+                    })
+                    
+                    Button(action: {
+                        authViewModel.signOut()
+                    }, label: {
+                        ExtraOption(text: "log out")
+                    })
+                }
             }
         }
         .navigationBarTitle("")
