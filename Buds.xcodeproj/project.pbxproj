@@ -19,6 +19,7 @@
 		7F5CF83F26A66DEA00E23E22 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F5CF83E26A66DEA00E23E22 /* Preview Assets.xcassets */; };
 		7F5CF84A26A66DEA00E23E22 /* BudsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5CF84926A66DEA00E23E22 /* BudsTests.swift */; };
 		7F5CF85526A66DEA00E23E22 /* BudsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5CF85426A66DEA00E23E22 /* BudsUITests.swift */; };
+		7F5F700526C3E0E2008A0D6D /* UploadPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5F700426C3E0E2008A0D6D /* UploadPhotoView.swift */; };
 		7F9C220326B2C0D2008BE28A /* UserAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9C220226B2C0D2008BE28A /* UserAuthViewModel.swift */; };
 		7FB1153126AFD979002FDD41 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FB1153026AFD979002FDD41 /* GoogleService-Info.plist */; };
 		7FB1153226AFD979002FDD41 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FB1153026AFD979002FDD41 /* GoogleService-Info.plist */; };
@@ -75,6 +76,7 @@
 		7F5CF85026A66DEA00E23E22 /* BudsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F5CF85426A66DEA00E23E22 /* BudsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsUITests.swift; sourceTree = "<group>"; };
 		7F5CF85626A66DEA00E23E22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F5F700426C3E0E2008A0D6D /* UploadPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadPhotoView.swift; sourceTree = "<group>"; };
 		7F9C220226B2C0D2008BE28A /* UserAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthViewModel.swift; sourceTree = "<group>"; };
 		7FB1153026AFD979002FDD41 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7FCD0B2D26AA3A1E0095A259 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				7F282FD326BBFA36008E647C /* NewPostView.swift */,
 				7F282FD526BBFA5D008E647C /* MessagesView.swift */,
 				7F282FD726BBFA8F008E647C /* AccountSettingsView.swift */,
+				7F5F700426C3E0E2008A0D6D /* UploadPhotoView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				7FCD0B3426AAAAD20095A259 /* CustomTextFieldStyles.swift in Sources */,
 				7F282FD826BBFA8F008E647C /* AccountSettingsView.swift in Sources */,
 				7F5CF83A26A66DE800E23E22 /* ContentView.swift in Sources */,
+				7F5F700526C3E0E2008A0D6D /* UploadPhotoView.swift in Sources */,
 				7F9C220326B2C0D2008BE28A /* UserAuthViewModel.swift in Sources */,
 				7FCD0B3226AA4C7C0095A259 /* LoginView.swift in Sources */,
 				7FCD0B3826AAB30B0095A259 /* CustomButtonStyles.swift in Sources */,

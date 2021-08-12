@@ -18,9 +18,8 @@ struct LoginView: View {
     @State private var email:String = ""
     @State private var password:String = ""
     
-    @State private var loginSuccessful:Bool = false
-    @State private var errorSigningIn:Bool = false
     @State private var errorMessage:String? = nil
+    
     
     var body: some View {
         VStack {
@@ -30,7 +29,7 @@ struct LoginView: View {
                 .padding(.bottom, 40)
             
             // error message
-            if errorSigningIn {
+            if self.errorMessage != nil {
                 HStack {
                     Text("ERROR: " + self.errorMessage!)
                         .font(.custom("Avenir Heavy", size: 20))
@@ -56,59 +55,17 @@ struct LoginView: View {
                 .textFieldStyle(TealRectangleTextFieldStyle())
                 
             // Log in button
-            NavigationLink(destination: ButtonBarView(), isActive: $loginSuccessful) {
-                    Button("LOG IN") {
-//                        if authViewModel.fieldsAreValid(fields: [email, password]) {
-//                            authViewModel.signIn(email: email, password: password)
-//
-//                            if authViewModel.signedIn {
-//                                self.loginSuccessful = true
-//                            }
-//                            else {
-//                                self.errorSigningIn = true
-//                            }
-//                        }
-//                        else {
-//                            self.errorSigningIn = true
-//                        }
-                        
-                        self.errorMessage = authViewModel.fieldsAreValid(fields: [email, password])
-                        
-                        if self.errorMessage == nil {
-                            print("valid")
-                        }
-                        else {
-                            print(self.errorMessage!)
-                        }
-                        
-                        if self.errorMessage == nil {
-                            self.errorMessage = authViewModel.signIn(email: email, password: password)
-                            
-                            if self.errorMessage == nil {
-                                print("authorized")
-                            }
-                            else {
-                                print(self.errorMessage!)
-                            }
-                            
-                            if self.errorMessage == nil {
-                                self.loginSuccessful = true
-                            }
-                            else {
-                                self.errorSigningIn = true
-                            }
-                        }
-                        else {
-                            self.errorSigningIn = true
-                        }
-                    }
-                    .buttonStyle(WhiteTextTealBackgroundButton(width: UIScreen.main.bounds.width / 2, height: 60))
-                    .padding()
+            Button("LOG IN") {
+                self.errorMessage = authViewModel.fieldsAreValid(fields: [email, password])
+                
+                if self.errorMessage == nil {
+                    self.errorMessage = authViewModel.signIn(email: email, password: password, completionHandler: { error in
+                        self.errorMessage = error
+                    })
                 }
-            
-//            Button("test") {
-//                authViewModel.signIn(email: email, password: password)
-//            }
+            }
+            .buttonStyle(WhiteTextTealBackgroundButton(width: UIScreen.main.bounds.width / 2, height: 60))
+            .padding()
             
             Spacer()
         }

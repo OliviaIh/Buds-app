@@ -6,10 +6,20 @@
 //
 
 import SwiftUI
+import UIKit
+import Photos
+import PhotosUI
+
+
+
 
 struct NewPostView: View {
     var body: some View {
         Text("new post view")
+//        UploadPhotoView()
+        
+        
+        
     }
 }
 
