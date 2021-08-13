@@ -13,9 +13,11 @@
 import SwiftUI
 
 
-// Looks the same as TealRectangleTextFieldStyle except there's
-// a magnifying glass SFSymbol next to the TextField and the
-// TextField's placeholder text is "search".
+/*
+ Looks the same as TealRectangleTextFieldStyle except there's
+ a magnifying glass SFSymbol next to the TextField and the
+ TextField's placeholder text is "search".
+ */
 struct SearchBar: View {
     
     @Binding var searchInquiry:String
@@ -35,7 +37,9 @@ struct SearchBar: View {
 }
 
 
-// Left-justified title meant for tops of pages
+/*
+ Left-justified title meant for tops of pages
+ */
 struct TopLeftTitle: View {
     
     var title:String
@@ -52,7 +56,9 @@ struct TopLeftTitle: View {
 }
 
 
-// VStack of TopLeftTitle and SearchBar for tops of pages
+/*
+ VStack of TopLeftTitle and SearchBar for tops of pages
+ */
 struct TitleAndSearchBar: View {
     
     var title:String
@@ -66,9 +72,153 @@ struct TitleAndSearchBar: View {
     }
 }
 
+/*
+ Horizontal ScrollView of toggleable filter buttons
+ */
+struct FilterButtons: View {
+    
+    // for demo; retrieve filters list from backend in future (?)
+    private let filters = ["furniture", "books", "clothes", "outdoors"]
+    
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack {
+                ForEach(0..<filters.count) { i in
+                    FilterButton(label: filters[i])
+                }
+            }
+        }
+        .padding(.leading)
+    }
+    
+    
+    private struct FilterButton: View {
+        
+        var label:String
+        @State var selected:Bool = false
+        
+        var body: some View {
+            if selected {
+                Button(label.uppercased()) {
+                    selected.toggle()
+                }
+                .buttonStyle(ToggledFilterButton())
+            }
+            else {
+                Button(label.uppercased()) {
+                    selected.toggle()
+                }
+                .buttonStyle(NotToggledFilterButton())
+            }
+        }
+    }
+}
 
-//struct TopLeftTitle_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TopLeftTitle(title: "blah")
-//    }
-//}
+
+/*
+ Default/placeholder profile pic
+ */
+struct ProfilePicPlaceholder: View {
+    
+    var size:CGFloat
+    
+    var body: some View {
+        ZStack {
+            Circle()
+                .frame(width: size, height: size)
+                .foregroundColor(Color("Red Orange"))
+            Image(systemName: "person.crop.circle")
+                .foregroundColor(Color("Orange"))
+                .font(.system(size: size + 4, weight: .thin))
+        }
+    }
+}
+
+
+/*
+ Info about poster for ForGrabs and ISO posts
+ */
+struct PosterInfo: View {
+    
+    var posterName:String
+    var infoLeft:String
+    var infoRight:String
+    
+    var body: some View {
+        HStack {
+            ProfilePicPlaceholder(size: 28)
+            
+            VStack(alignment: .leading) {
+                Text(posterName)
+                    .foregroundColor(Color("Dark Teal"))
+                    .font(.custom("Avenir Black", size: 14))
+                
+                Text(infoLeft + "  |  " + infoRight)
+                    .foregroundColor(Color("Teal"))
+                    .font(.custom("Avenir Medium", size: 12))
+            }
+            
+            Spacer()
+        }
+    }
+}
+
+
+/*
+ Info/button bar for ForGrabs and ISO posts
+ */
+struct PostToolbar: View {
+    
+    var hoursSincePosting:Int
+    
+    @State private var bookmarked:Bool = false
+    
+    var body: some View {
+        ZStack {
+            HStack {
+                Text(String(hoursSincePosting) + " hours ago")
+                    .foregroundColor(Color("Dark Teal"))
+                    .font(.custom("Avenir", size: 14))
+                
+                Spacer()
+                
+                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                    Image(systemName: "paperplane")
+                        .foregroundColor(Color("Dark Teal"))
+                        .font(.title3)
+                })
+                
+                Button(action: {
+                    bookmarked.toggle()
+                }, label: {
+                    if bookmarked {
+                        Image(systemName: "bookmark.fill")
+                            .foregroundColor(Color("Dark Teal"))
+                            .font(.title3)
+                    }
+                    else {
+                        Image(systemName: "bookmark")
+                            .foregroundColor(Color("Dark Teal"))
+                            .font(.title3)
+                    }
+                })
+                
+            }
+            
+            Button(action: {}, label: {
+                Image(systemName: "ellipsis")
+                    .foregroundColor(Color("Dark Teal"))
+                    .font(.headline)
+            })
+        }
+    }
+}
+
+
+
+struct Component_Previews: PreviewProvider {
+    static var previews: some View {
+        PosterInfo(posterName: "Poster's Name", infoLeft: "hello", infoRight: "hello")
+    }
+}
+

@@ -18,10 +18,9 @@ struct RegisterView: View {
     @State private var email:String = ""
     @State private var password:String = ""
     @State private var displayName:String = ""
-    @State private var addressString:String = ""
+    @State private var locationString:String = ""
     
-    @State private var registerSuccessful:Bool = false
-    @State private var errorSigningUp:Bool = false
+    @State private var errorMessage:String? = nil
     
     var body: some View {
         VStack {
@@ -31,9 +30,9 @@ struct RegisterView: View {
                 .padding(.bottom, 40)
             
             // error message
-            if errorSigningUp {
+            if self.errorMessage != nil {
                 HStack {
-                    Text("ERROR: " + authViewModel.errorMessage)
+                    Text("ERROR: " + self.errorMessage!)
                         .font(.custom("Avenir Heavy", size: 20))
                         .foregroundColor(Color("Red Orange"))
                         .multilineTextAlignment(.leading)
@@ -63,34 +62,23 @@ struct RegisterView: View {
                 .textFieldStyle(TealRectangleTextFieldStyle())
             
             // Location field
-            TextField("Preferred transaction location", text: $addressString)
+            TextField("Preferred transaction location", text: $locationString)
                 .padding()
                 .disableAutocorrection(true)
                 .textFieldStyle(TealRectangleTextFieldStyle())
                 
             // Register button
-            NavigationLink(destination: ButtonBarView(), isActive: $registerSuccessful) {
-                    Button("REGISTER") {
-                        
-                        var error:String? = authViewModel.fieldsAreValid(fields: [email, password, displayName, addressString])
-                        
-                        if error == nil {
-                            authViewModel.signUp(email: email, password: password, displayName: displayName, location: addressString)
-                            
-                            if authViewModel.signedIn {
-                                self.registerSuccessful = true
-                            }
-                            else {
-                                self.errorSigningUp = true
-                            }
-                        }
-                        else {
-                            self.errorSigningUp = true
-                        }
-                    }
-                    .buttonStyle(WhiteTextTealBackgroundButton(width: UIScreen.main.bounds.width / 2, height: 60))
-                    .padding()
+            Button("REGISTER") {
+                self.errorMessage = authViewModel.fieldsAreValid(fields: [email, password])
+                
+                if self.errorMessage == nil {
+                    self.errorMessage = authViewModel.signUp(email: email, password: password, displayName: displayName, location: locationString, completionHandler: { error in
+                        self.errorMessage = error
+                    })
                 }
+            }
+            .buttonStyle(WhiteTextTealBackgroundButton(width: UIScreen.main.bounds.width / 2, height: 60))
+            .padding()
             
             Spacer()
         }

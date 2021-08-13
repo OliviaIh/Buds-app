@@ -42,6 +42,7 @@ struct NewPostView: View {
             
         }
         .padding(.bottom, 100)
+
         
         
     
