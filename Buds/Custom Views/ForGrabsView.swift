@@ -20,12 +20,15 @@ struct ForGrabsView: View {
             TitleAndSearchBar(title: "for grabs", searchInquiry: $search)
             
             // filter buttons
-            
+            FilterButtons()
+                .padding(.bottom, 5)
+            Divider()
             
             // feed
             ScrollView {
-                ForEach(0..<100) { num in
-                    Text("\(num)")
+                ForEach(0..<10) { _ in
+                    ForGrabsPost()
+                        .padding(.bottom)
                 }
             }
         }
