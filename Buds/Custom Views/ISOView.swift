@@ -10,13 +10,14 @@ import SwiftUI
 struct ISOView: View {
     
     @State private var search:String = ""
+    @State private var toggledFilters:[String] = []
     
     var body: some View {
         VStack {
             TitleAndSearchBar(title: "in search of", searchInquiry: $search)
             
             // filter buttons
-            FilterButtons()
+            FilterButtonsView(toggledButtons: $toggledFilters)
                 .padding(.bottom, 5)
             Divider()
             

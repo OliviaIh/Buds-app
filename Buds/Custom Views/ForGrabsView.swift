@@ -14,13 +14,14 @@ import SwiftUI
 struct ForGrabsView: View {
     
     @State private var search:String = ""
+    @State private var toggledFilters:[String] = []
         
     var body: some View {
         VStack {
             TitleAndSearchBar(title: "for grabs", searchInquiry: $search)
             
             // filter buttons
-            FilterButtons()
+            FilterButtonsView(toggledButtons: $toggledFilters)
                 .padding(.bottom, 5)
             Divider()
             

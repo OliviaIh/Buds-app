@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ButtonBarView: View {
-
     
     var body: some View {
         TabView {

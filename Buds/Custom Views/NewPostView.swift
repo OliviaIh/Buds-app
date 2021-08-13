@@ -10,43 +10,32 @@ import SwiftUI
 struct NewPostView: View {
     private let buttonWidth:CGFloat = (UIScreen.main.bounds.width - 30) / 2
     private let buttonHeight:CGFloat = 60
+        
+    @State private var selection:String? = nil
     
     var body: some View {
-        VStack{
+                
+        VStack {
             Text("create a new post")
-                .font(.custom("Avenir Medium", size: 35))
+                .font(.custom("Avenir Medium", size: 40))
                 .foregroundColor(Color("Dark Teal"))
-                .padding(.top, 20)
-            
-            Button(action: goNewForGrabs) {
-                HStack(alignment: .center) {
-                    Spacer()
-                    Text("FOR GRABS")
-                        .font(.custom("Avenir Black", size: 18))
-                    Spacer()
+                .padding(.bottom, 50)
+                        
+            NavigationLink(destination: NewForGrabsView(), tag: "forGrabs", selection: $selection) {
+                Button("FOR GRABS") {
+                    self.selection = "forGrabs"
                 }
+                .buttonStyle(WhiteTextTealBackgroundButton(width: buttonWidth, height: buttonHeight))
             }
-            .buttonStyle(WhiteTextTealBackgroundButton(width: buttonWidth, height: buttonHeight))
-            .padding(.top, 50)
+            .padding(.bottom, 30)
             
-            Button(action: goNewISO) {
-                HStack(alignment: .center) {
-                    Spacer()
-                    Text("IN SEARCH OF")
-                        .font(.custom("Avenir Black", size: 18))
-                    Spacer()
+            NavigationLink(destination: NewISOView(), tag: "iso", selection: $selection) {
+                Button("IN SEARCH OF") {
+                    self.selection = "iso"
                 }
+                .buttonStyle(WhiteTextTealBackgroundButton(width: buttonWidth, height: buttonHeight))
             }
-            .buttonStyle(WhiteTextTealBackgroundButton(width: buttonWidth, height: buttonHeight))
-            .padding(.top, 30)
-            
         }
-        .padding(.bottom, 100)
-
-        
-        
-    
-        
     }
 }
 

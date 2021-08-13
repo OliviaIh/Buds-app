@@ -10,149 +10,117 @@ import PhotosUI
 
 struct NewForGrabsView: View {
     
-    @State var images: [UIImage] = []
-    @State var picker = false
     private let buttonWidth:CGFloat = (UIScreen.main.bounds.width - 30) / 2
     private let buttonHeight:CGFloat = 60
-    @State private var selection:String? = nil
-    @State private var forgrabstitle:String = ""
+    
+    @State var images: [UIImage] = []
+    @State var picker = false
+    @State private var title:String = ""
+    @State private var description:String = ""
+    @State private var selectedDate = Date()
+    @State private var tags:[String] = []
+    
     
     var body: some View {
         
-        VStack{
-            HStack{
-                TopLeftTitle(title: "new for grabs post")
-                    .padding(.top)
-                
-            }
-            Spacer()
+        
+        ScrollView(showsIndicators: false) {
+            TopLeftTitle(title: "new for grabs post")
             
             if !images.isEmpty{
-                VStack{
-                    
-                    ScrollView(.horizontal, showsIndicators: false, content:{
-                        HStack(alignment: .top, spacing: 15){
-                            ForEach(images, id: \.self){ img in
-                                
-                                Image(uiImage: img)
-                                    .resizable()
-                                    .frame(width: UIScreen.main.bounds.width - 35, height: 250)
-                                    .offset(x: UIScreen.main.bounds.width/25)
-                    
-                            }
-                
-                        }
-                
-                   })
-                    .padding(.bottom, 10)
-                    
-                    //Title text
-                    HStack {
-                        Text("Title")
-                            .font(.custom("Avenir Medium", size: 20))
-                            .foregroundColor(Color("Dark Teal"))
-                            .padding([.leading, .top])
-                        Spacer()
-                            .padding(.bottom, 0)
-                    }
-                
-                    //Title textfield
-                    TextField("Title", text: $forgrabstitle)
-                        .padding(EdgeInsets(top: 0, leading: UIScreen.main.bounds.width/25, bottom: 20, trailing: UIScreen.main.bounds.width/25))
-                        .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
-                        .textFieldStyle(TealRectangleTextFieldStyle())
-                    Spacer()
-                    
-
-                    
-                   
-                    
-                }
-                
-                
-               
-                
-                Spacer()
-                
-                
-                
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
-                
-                Button(action: goForGrabs) {
-                    HStack(alignment: .center) {
-                        Spacer()
-                        Text("Post").foregroundColor(Color.white).bold()
-                        Spacer()
-                    }
-                }
-                .buttonStyle(WhiteTextTealBackgroundButton(width: buttonWidth, height: buttonHeight))
-                
-                
-        
-                
-               
+                PickedImages(images: images)
             }
             else{
-                VStack{
-                    Button(action:{
-                        picker.toggle()
-
-
-    //                }, label: {
-    //                    Text("Upload Images")
-    //
-    //                })
-                    }){
+                Button(action:{
+                    picker.toggle()
+                }){
+                    VStack {
                         Image(systemName: "plus.rectangle.fill")
                             .font(.system(size: 160))
                             .foregroundColor(.gray)
                         
+                        Text("upload photo")
+                            .font(.custom("Avenir Medium", size: 18))
+                            .foregroundColor(Color("Dark Teal"))
                     }
-                    .position(x: UIScreen.main.bounds.width/2, y:UIScreen.main.bounds.height/8)
-                    .frame(height: 190)
-                    
-                    Text("Upload Photo")
-                        .font(.custom("Avenir Medium", size: 25))
-                        .foregroundColor(Color("Dark Teal"))
-                        .position(x: UIScreen.main.bounds.width/2, y:UIScreen.main.bounds.height/40)
-                   
-                    
                 }
-              
-                
-                
-            
-                
-                
-                
-                
-                
-//                .buttonStyle(WhiteTextTealBackgroundButton(width: UIScreen.main.bounds.width / 2, height: 60))
             }
-           
+            
+            VStack {
+                // Title textfield
+                PostInfoFieldLabel(label: "Title")
+                    .padding(.top, -10)
+                TextField("Title", text: $title)
+                    .padding(.horizontal)
+                    .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
+                    .textFieldStyle(TealRectangleTextFieldStyle())
+                
+                // Description textfield
+                PostInfoFieldLabel(label: "Description")
+                TextEditor(text: $description)
+                    .font(.custom("Helvetica Neue", size: 14))
+                    .foregroundColor(Color("Dark Teal"))
+                    .padding(.horizontal, 5)
+                    .frame(height: 150)
+                    .border(Color("Teal"), width: 2)
+                    .padding(.horizontal)
+                
+                // Collect by
+                PostInfoFieldLabel(label: "Collect By")
+                DatePicker("Select date and time:", selection: $selectedDate, in: Date()..., displayedComponents: [.date, .hourAndMinute])
+                    .padding(.horizontal)
+                    .font(.custom("Avenir", size: 16))
+                    .foregroundColor(Color("Dark Teal"))
+                    .accentColor(Color("Teal"))
+                
+                // Tags
+                PostInfoFieldLabel(label: "Tags")
+                FilterButtonsView(toggledButtons: $tags)
+            }
+            .padding(.bottom, 40)
+            
+            Button("POST") {
+                goForGrabs()
+            }
+            .buttonStyle(WhiteTextTealBackgroundButton(width: buttonWidth, height: buttonHeight))
         }
-        
-        //calling picker
         .sheet(isPresented: $picker){
             ImagePicker(images: $images, picker: $picker)
-        
         }
-        
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
+
+struct PickedImages: View {
+    
+    var images: [UIImage]
+    
+    var body: some View {
+        VStack{
+            ScrollView(.horizontal, showsIndicators: false, content:{
+                HStack(alignment: .top, spacing: 15){
+                    ForEach(images, id: \.self){ img in
+                        Image(uiImage: img)
+                            .resizable()
+                            .frame(width: UIScreen.main.bounds.width - 35, height: 250)
+                            .offset(x: UIScreen.main.bounds.width/25)
+                    }
+                }
+            })
+            .padding(.bottom, 10)
+        }
+    }
+}
+
+
 func goForGrabs() {
     if let window = UIApplication.shared.windows.first {
-        window.rootViewController = UIHostingController(rootView: ForGrabsView())
+        window.rootViewController = UIHostingController(rootView: ButtonBarView())
         window.makeKeyAndVisible()
     }
 }
+
 
 //New Image Picker API
 struct ImagePicker : UIViewControllerRepresentable {
@@ -197,7 +165,7 @@ struct ImagePicker : UIViewControllerRepresentable {
             parent.picker.toggle()
             
             for img in results{
-               
+                
                 //checking whether the image can be loaded
                 
                 if img.itemProvider.canLoadObject(ofClass: UIImage.self){
@@ -213,7 +181,7 @@ struct ImagePicker : UIViewControllerRepresentable {
                         
                         //appending image
                         self.parent.images.append(image1 as! UIImage)
-                       
+                        
                     }
                     
                 }
@@ -233,7 +201,7 @@ struct UploadPhotoView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NewForGrabsView()
-            NewForGrabsView()
+            //            NewForGrabsView()
         }
     }
 }

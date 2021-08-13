@@ -47,7 +47,7 @@ struct TopLeftTitle: View {
     var body: some View {
         HStack {
             Text(title)
-                .font(.custom("Avenir Medium", size: 35))
+                .font(.custom("Avenir Medium", size: 43))
                 .foregroundColor(Color("Dark Teal"))
                 .padding([.leading, .top])
             Spacer()
@@ -68,48 +68,6 @@ struct TitleAndSearchBar: View {
         VStack {
             TopLeftTitle(title: title)
             SearchBar(searchInquiry: $searchInquiry)
-        }
-    }
-}
-
-/*
- Horizontal ScrollView of toggleable filter buttons
- */
-struct FilterButtons: View {
-    
-    // for demo; retrieve filters list from backend in future (?)
-    private let filters = ["furniture", "books", "clothes", "outdoors"]
-    
-    var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack {
-                ForEach(0..<filters.count) { i in
-                    FilterButton(label: filters[i])
-                }
-            }
-        }
-        .padding(.leading)
-    }
-    
-    
-    private struct FilterButton: View {
-        
-        var label:String
-        @State var selected:Bool = false
-        
-        var body: some View {
-            if selected {
-                Button(label.uppercased()) {
-                    selected.toggle()
-                }
-                .buttonStyle(ToggledFilterButton())
-            }
-            else {
-                Button(label.uppercased()) {
-                    selected.toggle()
-                }
-                .buttonStyle(NotToggledFilterButton())
-            }
         }
     }
 }
@@ -215,10 +173,29 @@ struct PostToolbar: View {
 }
 
 
+/*
+ Label for info field for making new For Grabs and ISO posts
+ */
+struct PostInfoFieldLabel: View {
+    
+    var label:String
+    
+    var body: some View {
+        HStack {
+            Text(label)
+                .font(.custom("Avenir Medium", size: 18))
+                .foregroundColor(Color("Dark Teal"))
+                .padding([.leading, .top])
+            Spacer()
+        }
+    }
+}
+
+
 
 struct Component_Previews: PreviewProvider {
     static var previews: some View {
-        PosterInfo(posterName: "Poster's Name", infoLeft: "hello", infoRight: "hello")
+        PostInfoFieldLabel(label: "label")
     }
 }
 

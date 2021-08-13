@@ -11,28 +11,50 @@ struct NewISOView: View {
     private let buttonWidth:CGFloat = (UIScreen.main.bounds.width - 30) / 2
     private let buttonHeight:CGFloat = 60
     
+    @State private var description:String = ""
+    @State private var selectedDate = Date()
+    @State private var tags:[String] = []
+    
     var body: some View {
         
-        VStack{
+        ScrollView(showsIndicators: false) {
             TopLeftTitle(title: "new ISO post")
-                .padding(.top)
             
-            Button(action: goForGrabs) {
-                HStack(alignment: .center) {
-                    Spacer()
-                    Text("Post").foregroundColor(Color.white).bold()
-                    Spacer()
-                }
+            VStack {
+                // Description textfield
+                PostInfoFieldLabel(label: "Description")
+                TextEditor(text: $description)
+                    .font(.custom("Helvetica Neue", size: 14))
+                    .foregroundColor(Color("Dark Teal"))
+                    .padding(.horizontal, 5)
+                    .frame(height: 150)
+                    .border(Color("Teal"), width: 2)
+                    .padding(.horizontal)
+                
+                // Collect by
+                PostInfoFieldLabel(label: "Need By")
+                DatePicker("Select date and time:", selection: $selectedDate, in: Date()..., displayedComponents: [.date, .hourAndMinute])
+                    .padding(.horizontal)
+                    .font(.custom("Avenir", size: 16))
+                    .foregroundColor(Color("Dark Teal"))
+                    .accentColor(Color("Teal"))
+                
+                // Tags
+                PostInfoFieldLabel(label: "Tags")
+                FilterButtonsView(toggledButtons: $tags)
+            }
+            .padding(.bottom, 40)
+            
+            Button("POST") {
+                goForGrabs()    // see NewForGrabsView.swift
             }
             .buttonStyle(WhiteTextTealBackgroundButton(width: buttonWidth, height: buttonHeight))
-            
         }
-        
-        
-       
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
+    
 struct NewISOView_Previews: PreviewProvider {
     static var previews: some View {
         NewISOView()

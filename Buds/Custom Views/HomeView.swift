@@ -12,7 +12,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    
+        
     private let buttonWidth:CGFloat = (UIScreen.main.bounds.width - 30) / 2
     private let buttonHeight:CGFloat = 60
     
@@ -47,8 +47,8 @@ struct HomeView: View {
                     }
                     .buttonStyle(WhiteTextTealBackgroundButton(width: buttonWidth, height: buttonHeight))
                 }
-                
-//                Spacer()
+                                
+                Spacer()
                 
                 NavigationLink(destination: RegisterView(), tag: "register", selection: $selection) {
                     Button("REGISTER") {
@@ -58,7 +58,7 @@ struct HomeView: View {
                 }
             }
             .padding(.bottom, 30)
-            .padding(.horizontal, 10.0)
+            .padding(.horizontal, 11.0)
         }
     }
 }

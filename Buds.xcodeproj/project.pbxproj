@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7F119C1326C660ED006E58FB /* ISOPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F119C1226C660ED006E58FB /* ISOPostView.swift */; };
+		7F119C1626C66F2A006E58FB /* NewISOView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F119C1426C66F2A006E58FB /* NewISOView.swift */; };
+		7F119C1726C66F2A006E58FB /* NewForGrabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F119C1526C66F2A006E58FB /* NewForGrabsView.swift */; };
+		7F119C1B26C6D65A006E58FB /* FilterButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F119C1A26C6D65A006E58FB /* FilterButtonsView.swift */; };
 		7F282FD026BBE05B008E647C /* ButtonBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F282FCF26BBE05B008E647C /* ButtonBarView.swift */; };
 		7F282FD226BBE0BF008E647C /* ISOView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F282FD126BBE0BF008E647C /* ISOView.swift */; };
 		7F282FD426BBFA36008E647C /* NewPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F282FD326BBFA36008E647C /* NewPostView.swift */; };
@@ -20,7 +23,6 @@
 		7F5CF83F26A66DEA00E23E22 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F5CF83E26A66DEA00E23E22 /* Preview Assets.xcassets */; };
 		7F5CF84A26A66DEA00E23E22 /* BudsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5CF84926A66DEA00E23E22 /* BudsTests.swift */; };
 		7F5CF85526A66DEA00E23E22 /* BudsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5CF85426A66DEA00E23E22 /* BudsUITests.swift */; };
-		7F5F700526C3E0E2008A0D6D /* UploadPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5F700426C3E0E2008A0D6D /* UploadPhotoView.swift */; };
 		7F924C6726C65FAA00B8A6CA /* ForGrabsPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F924C6626C65FAA00B8A6CA /* ForGrabsPostView.swift */; };
 		7F9C220326B2C0D2008BE28A /* UserAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9C220226B2C0D2008BE28A /* UserAuthViewModel.swift */; };
 		7FB1153126AFD979002FDD41 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FB1153026AFD979002FDD41 /* GoogleService-Info.plist */; };
@@ -61,6 +63,9 @@
 		3FD6A4208BDF0FA976A0B558 /* Pods-Buds-BudsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buds-BudsUITests.release.xcconfig"; path = "Target Support Files/Pods-Buds-BudsUITests/Pods-Buds-BudsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		45179F8FDE7EC283458118F4 /* Pods-Buds-BudsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buds-BudsUITests.debug.xcconfig"; path = "Target Support Files/Pods-Buds-BudsUITests/Pods-Buds-BudsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7F119C1226C660ED006E58FB /* ISOPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISOPostView.swift; sourceTree = "<group>"; };
+		7F119C1426C66F2A006E58FB /* NewISOView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewISOView.swift; sourceTree = "<group>"; };
+		7F119C1526C66F2A006E58FB /* NewForGrabsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewForGrabsView.swift; sourceTree = "<group>"; };
+		7F119C1A26C6D65A006E58FB /* FilterButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonsView.swift; sourceTree = "<group>"; };
 		7F282FCF26BBE05B008E647C /* ButtonBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonBarView.swift; sourceTree = "<group>"; };
 		7F282FD126BBE0BF008E647C /* ISOView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISOView.swift; sourceTree = "<group>"; };
 		7F282FD326BBFA36008E647C /* NewPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostView.swift; sourceTree = "<group>"; };
@@ -79,7 +84,6 @@
 		7F5CF85026A66DEA00E23E22 /* BudsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F5CF85426A66DEA00E23E22 /* BudsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsUITests.swift; sourceTree = "<group>"; };
 		7F5CF85626A66DEA00E23E22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7F5F700426C3E0E2008A0D6D /* UploadPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadPhotoView.swift; sourceTree = "<group>"; };
 		7F924C6626C65FAA00B8A6CA /* ForGrabsPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForGrabsPostView.swift; sourceTree = "<group>"; };
 		7F9C220226B2C0D2008BE28A /* UserAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthViewModel.swift; sourceTree = "<group>"; };
 		7FB1153026AFD979002FDD41 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -199,9 +203,11 @@
 				7F282FD326BBFA36008E647C /* NewPostView.swift */,
 				7F282FD526BBFA5D008E647C /* MessagesView.swift */,
 				7F282FD726BBFA8F008E647C /* AccountSettingsView.swift */,
-				7F5F700426C3E0E2008A0D6D /* UploadPhotoView.swift */,
 				7F924C6626C65FAA00B8A6CA /* ForGrabsPostView.swift */,
 				7F119C1226C660ED006E58FB /* ISOPostView.swift */,
+				7F119C1526C66F2A006E58FB /* NewForGrabsView.swift */,
+				7F119C1426C66F2A006E58FB /* NewISOView.swift */,
+				7F119C1A26C6D65A006E58FB /* FilterButtonsView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -489,13 +495,15 @@
 				7FCD0B3426AAAAD20095A259 /* CustomTextFieldStyles.swift in Sources */,
 				7F282FD826BBFA8F008E647C /* AccountSettingsView.swift in Sources */,
 				7F924C6726C65FAA00B8A6CA /* ForGrabsPostView.swift in Sources */,
+				7F119C1726C66F2A006E58FB /* NewForGrabsView.swift in Sources */,
 				7F5CF83A26A66DE800E23E22 /* ContentView.swift in Sources */,
-				7F5F700526C3E0E2008A0D6D /* UploadPhotoView.swift in Sources */,
 				7F119C1326C660ED006E58FB /* ISOPostView.swift in Sources */,
 				7F9C220326B2C0D2008BE28A /* UserAuthViewModel.swift in Sources */,
 				7FCD0B3226AA4C7C0095A259 /* LoginView.swift in Sources */,
 				7FCD0B3826AAB30B0095A259 /* CustomButtonStyles.swift in Sources */,
+				7F119C1626C66F2A006E58FB /* NewISOView.swift in Sources */,
 				7F282FD626BBFA5D008E647C /* MessagesView.swift in Sources */,
+				7F119C1B26C6D65A006E58FB /* FilterButtonsView.swift in Sources */,
 				7F5CF83826A66DE800E23E22 /* BudsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

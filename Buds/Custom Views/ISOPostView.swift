@@ -34,9 +34,9 @@ struct ISOPostView: View {
                         .multilineTextAlignment(.leading)
                         .padding([.leading, .bottom], 5)
                         .padding(.trailing, 10)
-                        .frame(height: 86, alignment: .topLeading)
+                        .frame(height: 90, alignment: .topLeading)
                         .lineLimit(5)
-                        .lineSpacing(1.15)
+                        .lineSpacing(1.5)
                     
                     Text("Tags: " + tags.joined(separator: ", "))
                         .foregroundColor(Color("Dark Teal"))
