@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct ButtonBarView: View {
-    @State var selectedIndex = 10
-    
-    let tabBarImagesNames = ["For Grabs", "ISO"]
+
     
     var body: some View {
         TabView {
