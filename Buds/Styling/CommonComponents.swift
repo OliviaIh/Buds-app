@@ -135,8 +135,12 @@ struct ProfilePicPlaceholder: View {
 }
 
 
+/*
+ Info about poster for ForGrabs and ISO posts
+ */
 struct PosterInfo: View {
     
+    var posterName:String
     var infoLeft:String
     var infoRight:String
     
@@ -145,7 +149,7 @@ struct PosterInfo: View {
             ProfilePicPlaceholder(size: 28)
             
             VStack(alignment: .leading) {
-                Text("Poster's Name")
+                Text(posterName)
                     .foregroundColor(Color("Dark Teal"))
                     .font(.custom("Avenir Black", size: 14))
                 
@@ -160,14 +164,19 @@ struct PosterInfo: View {
 }
 
 
+/*
+ Info/button bar for ForGrabs and ISO posts
+ */
 struct PostToolbar: View {
+    
+    var hoursSincePosting:Int
     
     @State private var bookmarked:Bool = false
     
     var body: some View {
         ZStack {
             HStack {
-                Text("2 hours ago")
+                Text(String(hoursSincePosting) + " hours ago")
                     .foregroundColor(Color("Dark Teal"))
                     .font(.custom("Avenir", size: 14))
                 
@@ -206,143 +215,10 @@ struct PostToolbar: View {
 }
 
 
-struct ISOPost: View {
-    var body: some View {
-        VStack {
-            ZStack {
-                RoundedRectangle(cornerRadius: 5)
-                    .frame(height: 175, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    .foregroundColor(.white)
-                    .shadow(color: Color("Light Gray"), radius: 3, x: 0, y: 3)
-                
-                VStack(alignment: .leading) {
-                    PosterInfo(infoLeft: "3 mi", infoRight: "Need by Tues, July 12 at 8 PM")
-                        .padding(.leading, 5)
-                    
-                    Text("Poster can put description here of what they’re looking for. we’ll keep it simple (just a text box), but like the for grabs description box, we’ll put suggestions of what can be useful (description of item, where/how far they’re willing to go to pick up, etc).")
-                        .foregroundColor(Color("Dark Teal"))
-                        .font(.custom("Helvetica Neue", size: 13))
-                        .multilineTextAlignment(.leading)
-                        .padding([.leading, .bottom], 5)
-                        .padding(.trailing, 10)
-                        .frame(height: 86, alignment: .topLeading)
-                        .lineLimit(5)
-                        .lineSpacing(1.15)
-                    
-                    Text("Tags: furniture, outdoors")
-                        .foregroundColor(Color("Dark Teal"))
-                        .font(.custom("Helvetica Neue Italic", size: 13))
-                        .padding(.leading, 5)
-                        .padding(.trailing, 10)
-                }
-            }
-            
-            PostToolbar()
-        }
-        .padding(.horizontal, 15)
-    }
-}
 
-
-struct ForGrabsPost: View {
-    
-    private let pictureHeight = UIScreen.main.bounds.width - 40
-    private let collapsedHeight:CGFloat = 80
-    
-    @State private var infoBarExpanded:Bool = false
-    
-    var body: some View {
-        VStack {
-            PosterInfo(infoLeft: "45 giveaways", infoRight: "4.5 stars")
-            
-            ZStack(alignment: .bottomTrailing) {
-                Image("couch")
-                    .resizable()
-                    .frame(height: pictureHeight)
-                    .aspectRatio(contentMode: .fit)
-                
-                // info bar
-                ZStack(alignment: .top) {
-                    Rectangle()
-                        .frame(height: getInfoBarHeight())
-                        .foregroundColor(Color(red: 0.196, green: 0.169, blue: 0.169, opacity: 0.7))
-                    
-                    VStack(alignment: .leading, spacing: 10) {
-                        // info that's always visible
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text("3 mi  |  2 people on waitlist")
-                                    .foregroundColor(.white)
-                                    .font(.custom("Avenir", size: 14))
-                                
-                                Text("Couch")
-                                    .foregroundColor(.white)
-                                    .font(.custom("Avenir Black", size: 20))
-
-                                Text("collect by 8:30 PM")
-                                    .foregroundColor(.white)
-                                    .font(.custom("Avenir", size: 14))
-                            }
-                            
-                            Spacer()
-                        }
-                        
-                        // only visible when expanded
-                        if infoBarExpanded {
-                            Text("For now, I think just a text box of what specifications the item is will suffice. We can just add a blurb of what may help, like size specifications & what it was used for etc. For now, I think just a text box of what specifications the item is will suffice. We can just add a blurb of what may help, like size specifications & what it was used for etc.For now, I think just a text box of what specifications the item is will suffice. We can just add a blurb of what may help, like size specifications & what it was used for etc. ")
-                                .foregroundColor(.white)
-                                .font(.custom("Helvetica Neue", size: 14))
-                                .frame(height: getInfoBarHeight() - collapsedHeight - 50, alignment: .top)
-                            
-                            Text("Tags: furniture")
-                                .foregroundColor(.white)
-                                .font(.custom("Helvetica Neue Italic", size: 14))
-                        }
-                    }
-                    .padding(.top, 6)
-                    .padding(.leading)
-
-                }
-                
-                // more info
-                Button(action: {
-                    infoBarExpanded.toggle()
-                }, label: {
-                    if infoBarExpanded {
-                        Text("collapse")
-                            .foregroundColor(.white)
-                            .font(.custom("Helvetica Neue Medium", size: 12))
-                    }
-                    else {
-                        Text("more info")
-                            .foregroundColor(.white)
-                            .font(.custom("Helvetica Neue Medium", size: 12))
-                    }
-                })
-                .padding([.bottom, .trailing], 10)
-            }
-
-            PostToolbar()
-        }
-        .padding(.horizontal)
-        .animation(.easeOut)
-        .transition(.slide)
-    }
-    
-    
-    private func getInfoBarHeight() -> CGFloat {
-        if infoBarExpanded {
-            return 0.75 * pictureHeight
-        }
-        else {
-            return collapsedHeight
-        }
-    }
-}
-
-
-struct ForGrabsPost_Previews: PreviewProvider {
+struct Component_Previews: PreviewProvider {
     static var previews: some View {
-        ForGrabsPost()
+        PosterInfo(posterName: "Poster's Name", infoLeft: "hello", infoRight: "hello")
     }
 }
+

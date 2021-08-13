@@ -44,7 +44,7 @@ struct MessagesView: View {
             }
             
             // messages list
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 ForEach(0..<demoConvos.endIndex) { i in
                     // change button to NavigationLink when implementing messaging functionality
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {

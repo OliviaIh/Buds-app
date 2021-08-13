@@ -32,7 +32,7 @@ struct AccountSettingsView: View {
                 
                 
             
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 ProfilePictureSetting()
                 
                 // text field settings

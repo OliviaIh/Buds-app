@@ -25,9 +25,9 @@ struct ForGrabsView: View {
             Divider()
             
             // feed
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 ForEach(0..<10) { _ in
-                    ForGrabsPost()
+                    ForGrabsPostView(posterName: "Poster's Name", posterInfoLeft: "45 giveaways", posterInfoRight: "4.5 stars", distance: 3, waitlistLength: 1, collectBy: "8:30 PM", title: "Couch", description: "For now, I think just a text box of what specifications the item is will suffice. We can just add a blurb of what may help, like size specifications & what it was used for etc. For now, I think just a text box of what specifications the item is will suffice. We can just add a blurb of what may help, like size specifications & what it was used for etc.For now, I think just a text box of what specifications the item is will suffice. We can just add a blurb of what may help, like size specifications & what it was used for etc. ", tags: ["furniture"], hoursSincePosted: 2)
                         .padding(.bottom)
                 }
             }
