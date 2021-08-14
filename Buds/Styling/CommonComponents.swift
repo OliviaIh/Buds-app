@@ -134,7 +134,7 @@ struct PostToolbar: View {
     var body: some View {
         ZStack {
             HStack {
-                Text(String(hoursSincePosting) + " hours ago")
+                Text(getHoursSincePostingString(hours: hoursSincePosting))
                     .foregroundColor(Color("Dark Teal"))
                     .font(.custom("Avenir", size: 14))
                 
@@ -168,6 +168,18 @@ struct PostToolbar: View {
                     .foregroundColor(Color("Dark Teal"))
                     .font(.headline)
             })
+        }
+    }
+    
+    private func getHoursSincePostingString(hours:Int) -> String {
+        if hours == 1 {
+            return "1 hour ago"
+        }
+        else if hours == 0 {
+            return "less than 1 hour ago"
+        }
+        else {
+            return String(hours) + " hours ago"
         }
     }
 }

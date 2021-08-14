@@ -13,8 +13,13 @@ import SwiftUI
 
 struct ForGrabsView: View {
     
+    @EnvironmentObject var postingViewModel:PostingViewModel
+    
+    private let dateFormatter = DateFormatter()
+    
     @State private var search:String = ""
     @State private var toggledFilters:[String] = []
+    @State private var allPosts:[PostData] = []
         
     var body: some View {
         VStack {
@@ -27,14 +32,32 @@ struct ForGrabsView: View {
             
             // feed
             ScrollView(showsIndicators: false) {
-                ForEach(0..<10) { _ in
-                    ForGrabsPostView(posterName: "Poster's Name", posterInfoLeft: "45 giveaways", posterInfoRight: "4.5 stars", distance: 3, waitlistLength: 1, collectBy: "8:30 PM", title: "Couch", description: "For now, I think just a text box of what specifications the item is will suffice. We can just add a blurb of what may help, like size specifications & what it was used for etc. For now, I think just a text box of what specifications the item is will suffice. We can just add a blurb of what may help, like size specifications & what it was used for etc.For now, I think just a text box of what specifications the item is will suffice. We can just add a blurb of what may help, like size specifications & what it was used for etc. ", tags: ["furniture"], hoursSincePosted: 2)
-                        .padding(.bottom)
+                
+                ForEach(allPosts.reversed(), id: \.id) { post in
+                    ForGrabsPostView(
+                        posterName: post.data["posterName"] as! String,
+                        posterInfoLeft: "10 giveaways",
+                        posterInfoRight: "4.8 stars",
+                        distance: 5,
+                        waitlistLength: post.data["waitlistLength"] as! Int,
+                        collectBy: dateFormatter.string(from: (post.data["collectByDate"] as! Date)),
+                        title: post.data["title"] as! String,
+                        description: post.data["description"] as! String,
+                        tags: post.data["tags"] as! [String],
+                        hoursSincePosted: Calendar.current.dateComponents([.hour], from: post.data["postDate"] as! Date, to: Date()).hour!)
                 }
             }
         }
         .navigationBarTitle("")
         .navigationBarHidden(true)
+        .onAppear {
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .short
+            
+            postingViewModel.getAllForGrabsPosts { posts in
+                allPosts = posts
+            }
+        }
     }
 }
 

@@ -19,6 +19,7 @@ struct NewISOView: View {
     @State private var tags:[String] = []
     
     @State private var postButtonLabel = "POST"
+    @State private var postButtonPressed = false
     
     var body: some View {
         
@@ -50,13 +51,28 @@ struct NewISOView: View {
             }
             .padding(.bottom, 40)
             
-            Button(postButtonLabel) {
-                postButtonLabel = "POSTING..."
-                postingViewModel.postToISO(description: description, selectedDate: selectedDate, tags: tags) {
-                    goForGrabs()    // see NewForGrabsView.swift
-                }
-            }
-            .buttonStyle(WhiteTextTealBackgroundButton(width: buttonWidth, height: buttonHeight))
+            NavigationLink(
+                destination: ButtonBarView(),
+                isActive: $postButtonPressed,
+                label: {
+                    Button(postButtonLabel) {
+                        postButtonLabel = "POSTING..."
+                        postingViewModel.postToISO(description: description, selectedDate: selectedDate, tags: tags) {
+                            postButtonPressed = true
+                        }
+//                        postButtonPressed = true
+                    }
+                    .buttonStyle(WhiteTextTealBackgroundButton(width: buttonWidth, height: buttonHeight))
+                })
+            
+//            Button(postButtonLabel) {
+//                postButtonLabel = "POSTING..."
+////                postingViewModel.postToISO(description: description, selectedDate: selectedDate, tags: tags) {
+////                    goForGrabs()    // see NewForGrabsView.swift
+////                }
+//                goForGrabs()
+//            }
+//            .buttonStyle(WhiteTextTealBackgroundButton(width: buttonWidth, height: buttonHeight))
         }
         .navigationBarTitleDisplayMode(.inline)
     }

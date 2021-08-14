@@ -46,7 +46,7 @@ struct ISOPostView: View {
                 }
             }
             
-            PostToolbar(hoursSincePosting: 2)
+            PostToolbar(hoursSincePosting: hoursSincePosted)
         }
         .padding(.horizontal, 15)
     }

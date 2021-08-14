@@ -23,6 +23,7 @@ struct NewForGrabsView: View {
     @State private var tags:[String] = []
     
     @State private var postButtonLabel = "POST"
+    @State private var postButtonPressed = false
     
     
     var body: some View {
@@ -83,13 +84,28 @@ struct NewForGrabsView: View {
             }
             .padding(.bottom, 40)
             
-            Button(postButtonLabel) {
-                postButtonLabel = "POSTING..."
-                postingViewModel.postToForGrabs(title: title, description: description, selectedDate: selectedDate, tags: tags) {
-                    goForGrabs()
-                }
-            }
-            .buttonStyle(WhiteTextTealBackgroundButton(width: buttonWidth, height: buttonHeight))
+            NavigationLink(
+                destination: ButtonBarView(),
+                isActive: $postButtonPressed,
+                label: {
+                    Button(postButtonLabel) {
+                        postButtonLabel = "POSTING..."
+                        postingViewModel.postToForGrabs(title: title, description: description, selectedDate: selectedDate, tags: tags) {
+                            postButtonPressed = true
+                        }
+//                        postButtonPressed = true
+                    }
+                    .buttonStyle(WhiteTextTealBackgroundButton(width: buttonWidth, height: buttonHeight))
+                })
+            
+//            Button(postButtonLabel) {
+//                postButtonLabel = "POSTING..."
+////                postingViewModel.postToForGrabs(title: title, description: description, selectedDate: selectedDate, tags: tags) {
+////                    goForGrabs()
+////                }
+//                goForGrabs()
+//            }
+//            .buttonStyle(WhiteTextTealBackgroundButton(width: buttonWidth, height: buttonHeight))
         }
         .sheet(isPresented: $picker){
             ImagePicker(images: $images, picker: $picker)
@@ -119,7 +135,6 @@ struct PickedImages: View {
         }
     }
 }
-
 
 func goForGrabs() {
     if let window = UIApplication.shared.windows.first {
