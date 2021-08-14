@@ -28,11 +28,17 @@ struct ISOView: View {
             
             // feed
             ScrollView(showsIndicators: false){
-//                ForEach(0..<10) { _ in
-//                    ISOPostView(posterName: "Poster's Name", posterInfoLeft: "3 mi", posterInfoRight: "Need by Tues, July 12 at 8 PM", description: "Poster can put description here of what they’re looking for. we’ll keep it simple (just a text box), but like the for grabs description box, we’ll put suggestions of what can be useful (description of item, where/how far they’re willing to go to pick up, etc).", tags: ["furniture", "outdoors"], hoursSincePosted: 2)
-//                        .padding(.bottom)
-//                }
-                ForEach(allPosts, id: \.id) { post in
+                ForEach(allPosts.sorted(by: { post1, post2 in
+                    let timeSincePost1 = Calendar.current.dateComponents([.minute], from: post1.data["postDate"] as! Date, to: Date()).minute!
+                    let timeSincePost2 = Calendar.current.dateComponents([.minute], from: post2.data["postDate"] as! Date, to: Date()).minute!
+                    
+                    if timeSincePost1 >= timeSincePost2 {
+                        return false
+                    }
+                    else {
+                        return true
+                    }
+                }), id: \.id) { post in
                     ISOPostView(
                         posterName: post.data["posterName"] as! String,
                         posterInfoLeft: "3.0 mi",

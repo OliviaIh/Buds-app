@@ -33,7 +33,17 @@ struct ForGrabsView: View {
             // feed
             ScrollView(showsIndicators: false) {
                 
-                ForEach(allPosts.reversed(), id: \.id) { post in
+                ForEach(allPosts.sorted(by: { post1, post2 in
+                    let timeSincePost1 = Calendar.current.dateComponents([.minute], from: post1.data["postDate"] as! Date, to: Date()).minute!
+                    let timeSincePost2 = Calendar.current.dateComponents([.minute], from: post2.data["postDate"] as! Date, to: Date()).minute!
+                    
+                    if timeSincePost1 >= timeSincePost2 {
+                        return false
+                    }
+                    else {
+                        return true
+                    }
+                }), id: \.id) { post in
                     ForGrabsPostView(
                         posterName: post.data["posterName"] as! String,
                         posterInfoLeft: "10 giveaways",
