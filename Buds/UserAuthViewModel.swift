@@ -145,7 +145,7 @@ class UserAuthViewModel : ObservableObject {
      Gets the current user's UID. Returns nil if there's no
      current user.
      */
-    private func getCurrentUserID() -> String? {
+    func getCurrentUserID() -> String? {
         if isSignedIn {
             return auth.currentUser!.uid
         }

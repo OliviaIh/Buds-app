@@ -10,8 +10,8 @@ import SwiftUI
 struct ISOPostView: View {
     
     var posterName:String
-    var posterInfoLeft:String
-    var posterInfoRight:String
+    var posterInfoLeft:String   // distance
+    var posterInfoRight:String  // need by
     var description:String
     var tags:[String]
     var hoursSincePosted:Int

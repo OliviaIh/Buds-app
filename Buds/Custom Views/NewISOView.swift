@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct NewISOView: View {
+    
+    @EnvironmentObject var postingViewModel:PostingViewModel
+    
     private let buttonWidth:CGFloat = (UIScreen.main.bounds.width - 30) / 2
     private let buttonHeight:CGFloat = 60
     
     @State private var description:String = ""
     @State private var selectedDate = Date()
     @State private var tags:[String] = []
+    
+    @State private var postButtonLabel = "POST"
     
     var body: some View {
         
@@ -45,8 +50,11 @@ struct NewISOView: View {
             }
             .padding(.bottom, 40)
             
-            Button("POST") {
-                goForGrabs()    // see NewForGrabsView.swift
+            Button(postButtonLabel) {
+                postButtonLabel = "POSTING..."
+                postingViewModel.postToISO(description: description, selectedDate: selectedDate, tags: tags) {
+                    goForGrabs()    // see NewForGrabsView.swift
+                }
             }
             .buttonStyle(WhiteTextTealBackgroundButton(width: buttonWidth, height: buttonHeight))
         }

@@ -17,9 +17,11 @@ struct BudsApp: App {
         WindowGroup {
             
             let authViewModel = UserAuthViewModel()
+            let postingViewModel = PostingViewModel(authViewModel: authViewModel)
             
             ContentView()
                 .environmentObject(authViewModel)
+                .environmentObject(postingViewModel)
         }
     }
 }

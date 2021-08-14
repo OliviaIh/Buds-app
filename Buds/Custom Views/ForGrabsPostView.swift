@@ -10,8 +10,8 @@ import SwiftUI
 struct ForGrabsPostView: View {
     
     var posterName:String
-    var posterInfoLeft:String
-    var posterInfoRight:String
+    var posterInfoLeft:String   // number of giveaways
+    var posterInfoRight:String  // rating
     var distance:Double
     var waitlistLength:Int
     var collectBy:String

@@ -11,6 +11,7 @@
 		7F119C1626C66F2A006E58FB /* NewISOView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F119C1426C66F2A006E58FB /* NewISOView.swift */; };
 		7F119C1726C66F2A006E58FB /* NewForGrabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F119C1526C66F2A006E58FB /* NewForGrabsView.swift */; };
 		7F119C1B26C6D65A006E58FB /* FilterButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F119C1A26C6D65A006E58FB /* FilterButtonsView.swift */; };
+		7F119C1D26C6E7DA006E58FB /* PostingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F119C1C26C6E7DA006E58FB /* PostingViewModel.swift */; };
 		7F282FD026BBE05B008E647C /* ButtonBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F282FCF26BBE05B008E647C /* ButtonBarView.swift */; };
 		7F282FD226BBE0BF008E647C /* ISOView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F282FD126BBE0BF008E647C /* ISOView.swift */; };
 		7F282FD426BBFA36008E647C /* NewPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F282FD326BBFA36008E647C /* NewPostView.swift */; };
@@ -66,6 +67,7 @@
 		7F119C1426C66F2A006E58FB /* NewISOView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewISOView.swift; sourceTree = "<group>"; };
 		7F119C1526C66F2A006E58FB /* NewForGrabsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewForGrabsView.swift; sourceTree = "<group>"; };
 		7F119C1A26C6D65A006E58FB /* FilterButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonsView.swift; sourceTree = "<group>"; };
+		7F119C1C26C6E7DA006E58FB /* PostingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingViewModel.swift; sourceTree = "<group>"; };
 		7F282FCF26BBE05B008E647C /* ButtonBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonBarView.swift; sourceTree = "<group>"; };
 		7F282FD126BBE0BF008E647C /* ISOView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISOView.swift; sourceTree = "<group>"; };
 		7F282FD326BBFA36008E647C /* NewPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostView.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				7F5CF83726A66DE800E23E22 /* BudsApp.swift */,
 				7F5CF83926A66DE800E23E22 /* ContentView.swift */,
 				7F9C220226B2C0D2008BE28A /* UserAuthViewModel.swift */,
+				7F119C1C26C6E7DA006E58FB /* PostingViewModel.swift */,
 				7F5CF83B26A66DEA00E23E22 /* Assets.xcassets */,
 				7F5CF84026A66DEA00E23E22 /* Info.plist */,
 				7FB1153026AFD979002FDD41 /* GoogleService-Info.plist */,
@@ -495,6 +498,7 @@
 				7FCD0B3426AAAAD20095A259 /* CustomTextFieldStyles.swift in Sources */,
 				7F282FD826BBFA8F008E647C /* AccountSettingsView.swift in Sources */,
 				7F924C6726C65FAA00B8A6CA /* ForGrabsPostView.swift in Sources */,
+				7F119C1D26C6E7DA006E58FB /* PostingViewModel.swift in Sources */,
 				7F119C1726C66F2A006E58FB /* NewForGrabsView.swift in Sources */,
 				7F5CF83A26A66DE800E23E22 /* ContentView.swift in Sources */,
 				7F119C1326C660ED006E58FB /* ISOPostView.swift in Sources */,
